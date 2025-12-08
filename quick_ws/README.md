@@ -1,12 +1,6 @@
 # install
 
 ```bash
-colcon build
-. install/setup.bash
-ros2 launch ssu2_launch ssu2_launch.launch.xml
-
-ros2 launch autoware_launch autoware.launch.xml
-ros2 launch autoware_launch planning_simulator.launch.xml
 
 sudo apt install ros-humble-autoware-map-loader \
 ros-humble-autoware-map-projection-loader
