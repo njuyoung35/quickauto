@@ -185,11 +185,23 @@ sudo apt install libgoogle-glog-dev
 
 `process.xsh`와 `source /opt/ros/humble/setup.bash`, `colcon build`, `source install/setup.bash`를 연달아 실행한 후 `autoware_launch`를 실행하는 스크립트입니다.
 
+#### 사용법
+
+```bash
+./run.sh
+```
+
 ### process.xsh
 
 `repos.yaml`에 명세된 대로, `quickauto` 경로의 레포에서 부분경로를 복사해서 src의 부분경로에 복사합니다. 이미 말단 디렉토리 경로가 존재하면, 스킵합니다.
 
 기존 레포들을 전부 build하려면 굉장히 많은 시간이 소요되기에, 부분적으로, 시뮬레이터에 필요한 부분만 가져오도록 하는 전략을 취했습니다.
+
+#### 사용법
+
+```bash
+xonsh process.xsh
+```
 
 ### del.sh (개발용)
 
