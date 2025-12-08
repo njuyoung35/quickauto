@@ -29,8 +29,9 @@ sudo apt install ros-humble-autoware-utils \
 ros-humble-autoware-motion-utils \
 ros-humble-autoware-vehicle-info-utils
 
-# autoware_cmake
-sudo apt install ros-humble-autoware-cmake
+# related to cmake
+sudo apt install ros-humble-autoware-cmake \
+ros-humble-magic-enum
 
 # test
 sudo apt install ros-humble-autoware-lint-common \
