@@ -14,9 +14,9 @@ repos:
   
   # pointcloud_conatiner가 필요로 하는 의존성
   # glog (google logging library) 관련
-  - repo: autoware_universe
-    subpaths:
-      - common/autoware_glog_component
+  # - repo: autoware_universe
+  #   subpaths:
+  #     - common/autoware_glog_component
 
   # utils
   - repo: autoware_universe

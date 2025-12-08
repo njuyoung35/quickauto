@@ -11,6 +11,10 @@ git clone https://github.com/tier4/tier4_autoware_msgs.git
 
 sudo apt update
 
+# xonsh (python과 shell을 결합한 스크립트 언어)
+
+sudo apt install xonsh
+
 # autoware_lanelet2_extension 의존성
 sudo apt install libpugixml-dev
 
