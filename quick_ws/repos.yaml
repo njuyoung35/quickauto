@@ -80,17 +80,20 @@ repos:
   - repo: autoware_universe
     subpaths:
       - planning/costmap_generator
-  - repo: autoware_core
-    subpaths:
-      - planning/autoware_velocity_smoother
+  # - repo: autoware_core
+  #   subpaths:
+  #     - planning/autoware_velocity_smoother
   # behavior_path_planner
   - repo: autoware_universe
     subpaths:
       - planning/behavior_path_planner/autoware_behavior_path_planner
+      - planning/behavior_path_planner/autoware_behavior_path_planner_common
   # behavior_velocity_planner
   - repo: autoware_core
     subpaths:
       - planning/behavior_velocity_planner/autoware_behavior_velocity_planner
+      - planning/behavior_velocity_planner/autoware_behavior_velocity_planner_common
+      - planning/autoware_route_handler
 
   # msgs
   - repo: autoware_msgs
@@ -106,3 +109,4 @@ repos:
     subpaths:
       - tier4_control_msgs
       - tier4_vehicle_msgs
+      - tier4_planning_msgs

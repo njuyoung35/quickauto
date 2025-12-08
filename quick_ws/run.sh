@@ -7,6 +7,9 @@ sed -i '/^if(BUILD_TESTING)/,/^endif()/d' src/autoware_universe/control/autoware
 rm src/autoware_universe/control/autoware_mpc_lateral_controller/autoware_mpc_lateral_controller/test -rf
 sed -i '/^if(BUILD_TESTING)/,/^endif()/d' src/autoware_universe/control/autoware_mpc_lateral_controller/autoware_mpc_lateral_controller/CMakeLists.txt
 
+rm build/autoware_launch -rf
+rm install/autoware_launch -rf
+
 source /opt/ros/humble/setup.bash
 colcon build
 source install/setup.bash

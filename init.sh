@@ -22,7 +22,13 @@ ros-humble-lanelet2-projection
 sudo apt install ros-humble-autoware-map-loader \
 ros-humble-autoware-map-projection-loader
 
+# param gen
 sudo apt install ros-humble-generate-parameter-library
+
+# planning
+sudo apt install ros-humble-autoware-velocity-smoother \
+ros-humble-autoware-trajectory \
+ros-humble-autoware-objects-of-interest-marker-interface
 
 # utils
 sudo apt install ros-humble-autoware-utils \
