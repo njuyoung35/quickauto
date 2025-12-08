@@ -1,0 +1,8 @@
+/autoware_core/
+/autoware_lanelet2_extension/
+/autoware_launch/
+/autoware_msgs/
+/autoware_universe/
+/autoware_utils/
+/sensor_component_description/
+/tier4_autoware_msgs/
