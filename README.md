@@ -16,6 +16,22 @@ cd quick_ws
 
 ROS 기반의 오픈소스 자율주행 소프트웨어 스택입니다. 일본의 나고야 대학, tier IV 등과 관련 되어있습니다.
 
+### Ad API
+
+Ad API라는 노트북, 스마트폰 기기, 조이스틱 등 다양한 기기와 상호작용할 수 있는 표준화된 인터페이스를 제공합니다.
+
+### 컴포넌트 기반 설계
+
+`autoware_core`, `autoware_universe` 등의 레포에서 인지, 플래닝, 컨트롤 등 컴포넌트 단위와, 그 하위 패키지들을 제공해서 부분적으로 개발하고, 교체할 수 있습니다.
+
+### 벤더별 확장
+
+다양한 sensor, vehicle에 적용될 수 있도록 명세와 도구를 제공합니다. Tier IV, AWF 등 다양한 벤더별 솔루션을 제공합니다.
+
+### 데이터
+
+rosbag, 머신러닝, 강화학습 등을 지원하기 위한 도구, 데이터들도 생겨나고 있습니다.
+
 ## dependencies (repo)
 
 - autoware_core
@@ -34,7 +50,11 @@ high-quality, stable한 autoware 관련 ROS 패키지들을 저장하는 레포�
 
 개발, 실험 등 목적의 ROS 패키지들이 위치해 있습니다. 실용적인 패키지들도 많이 있습니다.
 
-autoware.ai -> autoware.auto -> autoware.universe의 버전을 거쳐 현재 universe 버전에 이르게 되었습니다.
+```
+Autoware.ai (2015-2020) → Autoware.auto (2020-2021) → Autoware.universe (2021-현재)
+```
+
+Autoware는 이와 같은 형태로 버전업이 진행되어 왔습니다.
 
 ### autoware_launch
 
@@ -82,5 +102,5 @@ apt로 받은 패키지 목록에 대한 설명은, quick_ws/README.md에서 통
 
 lanelet2 데이터 형식에 대한 io, 바이너리 인코딩, 쿼리 등을 지원합니다.
 
-autoware에서 사용하는 HDMap의 형식은 lanelet2를 따릅니다. LaneletMapBin
+autoware에서 사용하는 HDMap의 형식은 lanelet2를 따릅니다. LaneletMapBin이라는 형태로 통신을 하되, lanelet2 라이브러리가 제공하는 쿼리, 함수 등을 이용해 효율적으로 벡터정보를 조회해 플래닝 등 컴포넌트에서 사용할 수 있습니다.
 
