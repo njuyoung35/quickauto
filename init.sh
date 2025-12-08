@@ -20,6 +20,11 @@ ros-humble-lanelet2-core \
 ros-humble-lanelet2-io \
 ros-humble-lanelet2-projection
 
+# autoware-lanelet2-utils (버전 1.4.0) 제거 (충돌 발생, 1.5.0 필요)
+sudo apt remove ros-humble-autoware-trajectory \
+ros-humble-autoware-route-handler \
+ros-humble-autoware-lanelet2-utils
+
 # map
 sudo apt install ros-humble-autoware-map-loader \
 ros-humble-autoware-map-projection-loader
@@ -42,6 +47,7 @@ ros-humble-autoware-vehicle-info-utils
 # related to cmake
 sudo apt install ros-humble-autoware-cmake \
 ros-humble-magic-enum
+sudo apt install ros-humble-autoware-pyplot
 
 # test
 sudo apt install ros-humble-autoware-lint-common \
@@ -53,3 +59,9 @@ sudo apt install ros-humble-autoware-interpolation
 sudo apt install ros-humble-autoware-osqp-interface
 
 sudo apt install ros-humble-autoware-pose-initializer
+
+sudo apt install ros-humble-grid-map-ros \
+ros-humble-grid-map-core \
+ros-humble-grid-map-cv
+
+sudo apt install ros-humble-autoware-route-handler

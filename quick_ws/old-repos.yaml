@@ -1,0 +1,122 @@
+repos:
+  - repo: autoware_core
+    subpaths:
+      - common/autoware_global_parameter_loader # 파라미터 초기화 타이밍 문제 해결을 위해서, 전역적으로 중요 파라미터를 최초 초기화해주는 패키지. use_sim_time을 설정해주고, autoware_vehicle_info_utils를 호출해서 고른 vehicle_model의 {}_vehicle_description/config/vehicle_info.param.yaml을 불러온다.
+  - repo: sensor_component_description
+    subpaths: # sample_kit/sample_sensor_kit_launch/sample_sensor_kit_description이 필요로 하는 의존성들
+      - camera_description
+      - imu_description
+      - velodyne_description
+      - vls_description
+  - repo: tier4_autoware_msgs
+    subpaths:
+      - tier4_external_api_msgs # 암튼 필요했음..
+  
+  # pointcloud_conatiner가 필요로 하는 의존성
+  # glog (google logging library) 관련
+  # - repo: autoware_universe
+  #   subpaths:
+  #     - common/autoware_glog_component
+
+  # utils
+  - repo: autoware_universe
+    subpaths:
+      - common/tier4_api_utils
+
+  # autoware_universe/launch/tier4_map_launch가 필요로 하는 의존성들
+  - repo: autoware_universe
+    subpaths:
+      - map/autoware_map_tf_generator
+
+  - repo: autoware_universe
+    subpaths:
+      - launch/tier4_autoware_api_launch
+      - launch/tier4_control_launch
+      - launch/tier4_map_launch
+      - launch/tier4_planning_launch
+      - launch/tier4_simulator_launch
+      - launch/tier4_system_launch
+      - launch/tier4_vehicle_launch
+  - repo: autoware_launch
+    subpaths:
+      - autoware_launch
+      - sensor_kit/sample_sensor_kit_launch
+      - vehicle/sample_vehicle_launch
+
+  # test
+  - repo: autoware_universe
+    subpaths:
+      - common/autoware_fake_test_node
+
+  # control
+  - repo: autoware_universe
+    subpaths:
+      - control/autoware_mpc_lateral_controller
+      - control/autoware_pid_longitudinal_controller
+      - control/autoware_pure_pursuit
+      - control/autoware_trajectory_follower_base
+      - control/autoware_trajectory_follower_node
+
+  # vehicle
+  - repo: autoware_universe
+    subpaths:
+      - vehicle/autoware_raw_vehicle_cmd_converter
+
+  # map
+  - repo: autoware_lanelet2_extension
+    subpaths:
+      - autoware_lanelet2_extension
+  # - repo: autoware_core
+  #   subpaths:
+  #     - common/autoware_lanelet2_utils
+
+  # simulator
+  - repo: autoware_universe
+    subpaths:
+      - simulator/autoware_learning_based_vehicle_model
+      - simulator/autoware_simple_planning_simulator
+
+  # planning
+  - repo: autoware_universe
+    subpaths:
+      - planning/costmap_generator
+  # - repo: autoware_core
+  #   subpaths:
+  #     - planning/autoware_velocity_smoother
+
+  - repo: autoware_universe
+    subpaths:
+      - common/autoware_traffic_light_utils
+      - planning/autoware_rtc_interface
+      - planning/autoware_freespace_planning_algorithms
+      - common/autoware_boundary_departure_checker
+
+  # behavior_path_planner
+  - repo: autoware_universe
+    subpaths:
+      - planning/behavior_path_planner/autoware_behavior_path_planner
+      - planning/behavior_path_planner/autoware_behavior_path_planner_common
+  # behavior_velocity_planner
+  - repo: autoware_core
+    subpaths:
+      - planning/behavior_velocity_planner/autoware_behavior_velocity_planner
+      - planning/behavior_velocity_planner/autoware_behavior_velocity_planner_common
+      - planning/autoware_route_handler
+
+  # msgs
+  - repo: autoware_msgs
+    subpaths:
+      - autoware_control_msgs
+      - autoware_system_msgs
+      - autoware_vehicle_msgs
+      - autoware_planning_msgs
+      - autoware_map_msgs
+
+  # tier4_msgs
+  - repo: tier4_autoware_msgs
+    subpaths:
+      - tier4_control_msgs
+      - tier4_vehicle_msgs
+      - tier4_planning_msgs
+      - tier4_perception_msgs
+      - tier4_rtc_msgs

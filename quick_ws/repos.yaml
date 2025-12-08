@@ -69,6 +69,11 @@ repos:
   - repo: autoware_core
     subpaths:
       - common/autoware_lanelet2_utils
+      - common/autoware_trajectory
+
+  - repo: autoware_universe
+    subpaths:
+      - common/autoware_grid_map_utils
 
   # simulator
   - repo: autoware_universe
@@ -79,7 +84,10 @@ repos:
   # planning
   - repo: autoware_universe
     subpaths:
-      - planning/costmap_generator
+      # - planning/costmap_generator
+      # in humble
+      - planning/autoware_costmap_generator
+
   # - repo: autoware_core
   #   subpaths:
   #     - planning/autoware_velocity_smoother
