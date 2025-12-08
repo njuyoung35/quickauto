@@ -3,8 +3,10 @@
 sudo apt update
 
 # xonsh (python과 shell을 결합한 스크립트 언어)
-
 sudo apt install xonsh
+
+# cpp json
+sudo apt install nlohmann-json3-dev
 
 # autoware_lanelet2_extension 의존성
 sudo apt install libpugixml-dev
