@@ -14,6 +14,9 @@ sudo apt update
 # autoware_lanelet2_extension 의존성
 sudo apt install libpugixml-dev
 
+# glog
+sudo apt install libgoogle-glog-dev
+
 # lanelet2 관련
 sudo apt install ros-humble-lanelet2 \
 ros-humble-lanelet2-core \
