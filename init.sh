@@ -9,6 +9,17 @@ git clone https://github.com/autowarefoundation/autoware_utils.git
 git clone https://github.com/tier4/sensor_component_description.git
 git clone https://github.com/tier4/tier4_autoware_msgs.git
 
+sudo apt update
+
+# autoware_lanelet2_extension 의존성
+sudo apt install libpugixml-dev
+
+# lanelet2 관련
+sudo apt install ros-humble-lanelet2 \
+ros-humble-lanelet2-core \
+ros-humble-lanelet2-io \
+ros-humble-lanelet2-projection
+
 # map
 sudo apt install ros-humble-autoware-map-loader \
 ros-humble-autoware-map-projection-loader
@@ -19,6 +30,9 @@ sudo apt install ros-humble-generate-parameter-library
 sudo apt install ros-humble-autoware-utils \
 ros-humble-autoware-motion-utils \
 ros-humble-autoware-vehicle-info-utils
+
+# autoware_cmake
+sudo apt install ros-humble-autoware-cmake
 
 # test
 sudo apt install ros-humble-autoware-lint-common \
