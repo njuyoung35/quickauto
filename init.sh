@@ -2,39 +2,13 @@
 
 sudo apt update
 
-# xonsh (python과 shell을 결합한 스크립트 언어)
-sudo apt install xonsh
-
-
-
-# cpp json
-sudo apt install nlohmann-json3-dev
-
-# glog
-sudo apt install libgoogle-glog-dev
-
-# utils
-sudo apt install ros-humble-autoware-utils \
-ros-humble-autoware-motion-utils \
-ros-humble-autoware-vehicle-info-utils
-
-# related to cmake and codegen
-sudo apt install ros-humble-autoware-cmake \
-ros-humble-magic-enum \
-ros-humble-autoware-pyplot \
-ros-humble-generate-parameter-library
-
-# test
-sudo apt install ros-humble-autoware-lint-common \
-ros-humble-autoware-testing \
-ros-humble-autoware-test-utils \
-ros-humble-ros-testing
-
 
 
 # map
 sudo apt install ros-humble-autoware-map-loader \
 ros-humble-autoware-map-projection-loader
+
+
 
 # lanelet2 관련
 sudo apt install ros-humble-lanelet2 \
@@ -66,8 +40,33 @@ ros-humble-autoware-object-recognition-utils
 
 
 
+# devtools
+
+# related to cmake and codegen
+sudo apt install ros-humble-autoware-cmake \
+ros-humble-magic-enum \
+ros-humble-autoware-pyplot \
+ros-humble-generate-parameter-library
+# xonsh (python과 shell을 결합한 스크립트 언어)
+sudo apt install xonsh
+
+# test
+sudo apt install ros-humble-autoware-lint-common \
+ros-humble-autoware-testing \
+ros-humble-autoware-test-utils \
+ros-humble-ros-testing
+
+# utils
+sudo apt install ros-humble-autoware-utils \
+ros-humble-autoware-motion-utils \
+ros-humble-autoware-vehicle-info-utils
+
 # etc
 
 sudo apt install ros-humble-autoware-interpolation \
 ros-humble-autoware-osqp-interface \
 ros-humble-autoware-pose-initializer
+# cpp json
+sudo apt install nlohmann-json3-dev
+# glog
+sudo apt install libgoogle-glog-dev
