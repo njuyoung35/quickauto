@@ -138,10 +138,10 @@
     <!-- Relay node for trajectory topic -->
     <!-- This is a temporary addition for migration purposes. -->
     <!-- https://github.com/orgs/autowarefoundation/discussions/5033#discussioncomment-13704802 -->
-    <node pkg="topic_tools" exec="relay" name="trajectory_relay">
+    <!-- <node pkg="topic_tools" exec="relay" name="trajectory_relay">
       <param name="input_topic" value="/planning/trajectory"/>
       <param name="output_topic" value="/planning/scenario_planning/trajectory"/>
-    </node>
+    </node> -->
   </group>
 
   <!-- Control -->
@@ -162,7 +162,7 @@
   </group>
 
   <!-- Tools -->
-  <!-- <group>
+  <group>
     <node
       pkg="rviz2"
       exec="rviz2"
@@ -174,7 +174,7 @@
     >
       <env name="QT_QPA_PLATFORMTHEME" value="qt5ct"/>
     </node>
-  </group> -->
+  </group>
 
   <!-- planning_simulator.launch.xml -->
   <!-- Simulator -->
