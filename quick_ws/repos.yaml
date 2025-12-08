@@ -76,6 +76,22 @@ repos:
       - simulator/autoware_learning_based_vehicle_model
       - simulator/autoware_simple_planning_simulator
 
+  # planning
+  - repo: autoware_universe
+    subpaths:
+      - planning/costmap_generator
+  - repo: autoware_core
+    subpaths:
+      - planning/autoware_velocity_smoother
+  # behavior_path_planner
+  - repo: autoware_universe
+    subpaths:
+      - planning/behavior_path_planner/autoware_behavior_path_planner
+  # behavior_velocity_planner
+  - repo: autoware_core
+    subpaths:
+      - planning/behavior_velocity_planner/autoware_behavior_velocity_planner
+
   # msgs
   - repo: autoware_msgs
     subpaths:

@@ -1,14 +1,5 @@
 #!/bin/bash
 
-git clone https://github.com/autowarefoundation/autoware_core.git
-git clone https://github.com/autowarefoundation/autoware_universe.git
-git clone https://github.com/autowarefoundation/autoware_lanelet2_extension.git
-git clone https://github.com/autowarefoundation/autoware_launch.git
-git clone https://github.com/autowarefoundation/autoware_msgs.git
-git clone https://github.com/autowarefoundation/autoware_utils.git
-git clone https://github.com/tier4/sensor_component_description.git
-git clone https://github.com/tier4/tier4_autoware_msgs.git
-
 sudo apt update
 
 # xonsh (python과 shell을 결합한 스크립트 언어)
