@@ -89,6 +89,7 @@ repos:
       - common/autoware_traffic_light_utils
       - planning/autoware_rtc_interface
       - planning/autoware_freespace_planning_algorithms
+      - common/autoware_boundary_departure_checker
 
   # behavior_path_planner
   - repo: autoware_universe
