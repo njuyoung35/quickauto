@@ -12,6 +12,10 @@ cd quick_ws
 . run.sh
 ```
 
+## autoware에 대하여
+
+ROS 기반의 오픈소스 자율주행 소프트웨어 스택입니다. 일본의 나고야 대학, tier IV 등과 관련 되어있습니다.
+
 ## dependencies (repo)
 
 - autoware_core
@@ -29,6 +33,8 @@ high-quality, stable한 autoware 관련 ROS 패키지들을 저장하는 레포�
 ### autoware_universe
 
 개발, 실험 등 목적의 ROS 패키지들이 위치해 있습니다. 실용적인 패키지들도 많이 있습니다.
+
+autoware.ai -> autoware.auto -> autoware.universe의 버전을 거쳐 현재 universe 버전에 이르게 되었습니다.
 
 ### autoware_launch
 
@@ -63,3 +69,18 @@ autoware 패키지 중, 의존성이 너무 깊어지거나, 굳이 코드로 �
 apt로 받은 패키지 중 일부는 버전 충돌이 일어날 수 있어서, 다운받는 식으로 변환하였습니다.
 
 apt로 받은 패키지 목록에 대한 설명은, quick_ws/README.md에서 통합해서 진행합니다.
+
+## sample-map-planning
+
+이 데이터는 일본 가시와시 지바현에 위치한 도쿄대학 가시와 캠퍼스 주위의 HDMap (정밀도로지도, 벡터지도) 및 pointcloud 데이터가 담긴, autoware에서 샘플로 제공하는 데이터입니다.
+
+### lanelet2
+
+독일의 FZI, Research Center for Information Technology 연구기관에서 개발한, cpp 기반의 고정밀 지도 데이터 형식 및 라이브러리입니다.
+
+사용되는 파일 형식은 .osm, 그 중 .josm의 확장격 성격을 띠었으며, node와 way, relation으로 구성됩니다.
+
+lanelet2 데이터 형식에 대한 io, 바이너리 인코딩, 쿼리 등을 지원합니다.
+
+autoware에서 사용하는 HDMap의 형식은 lanelet2를 따릅니다. LaneletMapBin
+
