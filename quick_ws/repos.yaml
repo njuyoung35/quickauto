@@ -83,6 +83,13 @@ repos:
   # - repo: autoware_core
   #   subpaths:
   #     - planning/autoware_velocity_smoother
+
+  - repo: autoware_universe
+    subpaths:
+      - common/autoware_traffic_light_utils
+      - planning/autoware_rtc_interface
+      - planning/autoware_freespace_planning_algorithms
+
   # behavior_path_planner
   - repo: autoware_universe
     subpaths:
@@ -110,3 +117,5 @@ repos:
       - tier4_control_msgs
       - tier4_vehicle_msgs
       - tier4_planning_msgs
+      - tier4_perception_msgs
+      - tier4_rtc_msgs

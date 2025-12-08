@@ -28,7 +28,8 @@ sudo apt install ros-humble-generate-parameter-library
 # planning
 sudo apt install ros-humble-autoware-velocity-smoother \
 ros-humble-autoware-trajectory \
-ros-humble-autoware-objects-of-interest-marker-interface
+ros-humble-autoware-objects-of-interest-marker-interface \
+ros-humble-autoware-planning-factor-interface
 
 # utils
 sudo apt install ros-humble-autoware-utils \
