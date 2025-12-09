@@ -22,6 +22,7 @@ repos:
   - repo: autoware_universe
     subpaths:
       - common/tier4_api_utils
+      - common/autoware_universe_utils
 
   # autoware_universe/launch/tier4_map_launch가 필요로 하는 의존성들
   - repo: autoware_universe
@@ -92,6 +93,19 @@ repos:
   #   subpaths:
   #     - planning/autoware_velocity_smoother
 
+  # motion_velocity_planner
+  - repo: autoware_universe
+    subpaths:
+      - planning/motion_velocity_planner
+  - repo: autoware_core
+    subpaths:
+      - planning/motion_velocity_planner
+
+  # mission planner
+  - repo: autoware_universe
+    subpaths:
+      - planning/autoware_mission_planner_universe
+
   - repo: autoware_universe
     subpaths:
       - common/autoware_traffic_light_utils
@@ -128,3 +142,4 @@ repos:
       - tier4_planning_msgs
       - tier4_perception_msgs
       - tier4_rtc_msgs
+      - tier4_debug_msgs

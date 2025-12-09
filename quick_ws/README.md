@@ -89,7 +89,22 @@ ros-humble-autoware-lanelet2-utils
 
 ### control
 
+- autoware_universe/control (`component directory`)
+    - autoware_mpc_lateral_controller (`package`)
+    - autoware_pid_longitudinal_controller (`package`)
+    - autoware_pure_pursuit (`package`)
+    - autoware_trajectory_follower_base (`package`)
+        - `autoware_trajectory_follower_node`가 알고리즘적으로 참조하는 패키지입니다. 여기서 mpc, pure pursuit, pid 등 제어기를 선택해서 계산을 수행합니다.
+    - autoware_trajectory_follower_node (`package`)
+        - 궤적을 입력받아, 아커만 컨트롤 신호를 발행하는 핵심 노드입니다.
+
 ### simulator
+
+- autoware_universe/simulator (`component directory`)
+    - autoware_learning_based_vehicle_model (`package`)
+        - `autoware_simple_planning_simulator`에서 사용하는 코드적 인터페이스입니다.
+    - autoware_simple_planning_simulator (`package`)
+        - f1tenth_gym과 유사하게, 한 시간단위 당 차량의 상태를 업데이트 하고, 주변 차량, 신호등 등 또한 같이 업데이트해서 발행하는 핵심 시뮬레이터 노드입니다.
 
 ### sensor
 
