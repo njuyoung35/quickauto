@@ -87,12 +87,17 @@ ros-humble-autoware-lanelet2-utils
 
 ### planning
 
+`planning.md`에서 따로 다룹니다.
+
 ### control
 
 - autoware_universe/control (`component directory`)
     - autoware_mpc_lateral_controller (`package`)
+        - mpc 제어기입니다.
     - autoware_pid_longitudinal_controller (`package`)
+        - pid 제어기입니다.
     - autoware_pure_pursuit (`package`)
+        - pure pursuit 제어기입니다.
     - autoware_trajectory_follower_base (`package`)
         - `autoware_trajectory_follower_node`가 알고리즘적으로 참조하는 패키지입니다. 여기서 mpc, pure pursuit, pid 등 제어기를 선택해서 계산을 수행합니다.
     - autoware_trajectory_follower_node (`package`)

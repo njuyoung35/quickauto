@@ -24,6 +24,9 @@ repos:
       - common/tier4_api_utils
       - common/autoware_universe_utils
       - common/autoware_signal_processing
+  - repo: autoware_core
+    subpaths:
+      - common/autoware_qos_utils
 
   # autoware_universe/launch/tier4_map_launch가 필요로 하는 의존성들
   - repo: autoware_universe
