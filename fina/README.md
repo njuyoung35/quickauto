@@ -17,6 +17,8 @@ source <쉘스크립트>
 . load_autoware.sh
 ```
 
+이 스크립트의 역할:
+
 1. `autowarefoundation/autoware` 레포를 복붙합니다.
 2. `autoware/autoware.repos` 파일에 추가적으로 필요한 의존성을 추가합니다.
     - osqp_vendor
