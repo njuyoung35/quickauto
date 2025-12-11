@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: wagon
+  wheel_base: 2.85
+  wheel_tread: 1.6
+  wheel_radius: 0.33
+  wheel_width: 0.22
+  front_overhang: 0.95
+  rear_overhang: 1.1
+  left_overhang: 0.17
+  right_overhang: 0.17
+  ground_offset: 0.15
+  vehicle_height: 1.45
+  vehicle_width: 1.94
+  vehicle_length: 4.9

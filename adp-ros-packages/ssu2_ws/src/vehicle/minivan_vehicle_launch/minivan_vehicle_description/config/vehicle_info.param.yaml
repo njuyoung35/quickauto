@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: minivan
+  wheel_base: 3.0
+  wheel_tread: 1.7
+  wheel_radius: 0.35
+  wheel_width: 0.22
+  front_overhang: 0.9
+  rear_overhang: 1.0
+  left_overhang: 0.18
+  right_overhang: 0.18
+  ground_offset: 0.2
+  vehicle_height: 1.8
+  vehicle_width: 2.06
+  vehicle_length: 4.9

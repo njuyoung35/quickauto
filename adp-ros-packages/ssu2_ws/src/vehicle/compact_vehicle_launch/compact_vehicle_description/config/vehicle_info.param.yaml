@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: compact
+  wheel_base: 2.5
+  wheel_tread: 1.5
+  wheel_radius: 0.3
+  wheel_width: 0.2
+  front_overhang: 0.8
+  rear_overhang: 0.7
+  left_overhang: 0.15
+  right_overhang: 0.15
+  ground_offset: 0.15
+  vehicle_height: 1.45
+  vehicle_width: 1.7999999999999998
+  vehicle_length: 4.0

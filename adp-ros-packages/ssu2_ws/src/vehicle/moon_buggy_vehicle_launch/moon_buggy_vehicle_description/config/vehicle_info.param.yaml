@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: moon_buggy
+  wheel_base: 2.5
+  wheel_tread: 2.2
+  wheel_radius: 0.5
+  wheel_width: 0.4
+  front_overhang: 0.6
+  rear_overhang: 0.6
+  left_overhang: 0.1
+  right_overhang: 0.1
+  ground_offset: 0.6
+  vehicle_height: 1.6
+  vehicle_width: 2.4000000000000004
+  vehicle_length: 3.7

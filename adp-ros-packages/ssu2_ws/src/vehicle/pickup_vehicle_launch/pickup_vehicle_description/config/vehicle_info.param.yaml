@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: pickup
+  wheel_base: 3.2
+  wheel_tread: 1.75
+  wheel_radius: 0.45
+  wheel_width: 0.28
+  front_overhang: 1.0
+  rear_overhang: 1.4
+  left_overhang: 0.2
+  right_overhang: 0.2
+  ground_offset: 0.28
+  vehicle_height: 1.85
+  vehicle_width: 2.15
+  vehicle_length: 5.6

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ssu2_simple_trajectory_follower</name>
+  <version>0.0.0</version>
+  <description>
+    간단한 궤적 추종 코드입니다.
+추종 궤적과 에고 차량의 운동학을 가지고 계산합니다.
+  </description>
+  <maintainer email="njuyoung35@gmail.com">njuyoung35</maintainer>
+  <maintainer email="leejaeya@gmail.com">LeeJaeya-1</maintainer>
+  <maintainer email="leehwanhi@gmail.com">LeeHwanhi</maintainer>
+  
+  <author email="njuyoung35@gmail.com">njuyoung35</author>
+  <author email="leejaeya@gmail.com">LeeJaeya-1</author>
+  <author email="leehwanhi@gmail.com">LeeHwanhi</author>
+  
+  <license>MIT</license>
+  
+  <depend>ssu2_control_msgs</depend>
+  <depend>ssu2_planning_msgs</depend>
+  <depend>nav_msgs</depend>
+  
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <buildtool_depend>ament_cargo</buildtool_depend>
+  <depend>rclrs</depend>
+  <export>
+    <build_type>ament_cargo</build_type>
+  </export>
+</package>

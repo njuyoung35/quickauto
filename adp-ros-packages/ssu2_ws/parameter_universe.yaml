@@ -1,0 +1,10 @@
+$WORKSPACE_PATH: /home/misys/adp-ros-packages/ssu2_ws
+$ASSETS_PATH: ${WORKSPACE_PATH}/assets
+---
+universe:
+  - pkg: autoware_map_projection_loader
+    params:
+      - param: map_projector_info_path
+        default: $(var sample_map_projector_info_path)
+      - param: lanelet2_map_path
+        default: $(var lanelet2_sample_map_path)

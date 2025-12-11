@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: bus
+  wheel_base: 6.5
+  wheel_tread: 2.2
+  wheel_radius: 0.55
+  wheel_width: 0.35
+  front_overhang: 2.0
+  rear_overhang: 2.5
+  left_overhang: 0.1
+  right_overhang: 0.1
+  ground_offset: 0.35
+  vehicle_height: 3.2
+  vehicle_width: 2.4000000000000004
+  vehicle_length: 11.0

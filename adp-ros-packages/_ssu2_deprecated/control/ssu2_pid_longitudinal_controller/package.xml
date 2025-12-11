@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ssu2_pid_longitudinal_controller</name>
+  <version>0.0.0</version>
+  <description>
+    타겟 궤적의 타겟 속도 집합 달성을 위해 가속도를 계산하는 알고리즘입니다.
+  </description>
+  <maintainer email="njuyoung35@gmail.com">njuyoung35</maintainer>
+  <maintainer email="leejaeya@gmail.com">LeeJaeya-1</maintainer>
+  <maintainer email="leehwanhi@gmail.com">LeeHwanhi</maintainer>
+  
+  <author email="njuyoung35@gmail.com">njuyoung35</author>
+  <author email="leejaeya@gmail.com">LeeJaeya-1</author>
+  <author email="leehwanhi@gmail.com">LeeHwanhi</author>
+  
+  <license>MIT</license>
+  
+  <depend>ssu2_control_msgs</depend>
+  <depend>ssu2_planning_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <buildtool_depend>ament_cargo</buildtool_depend>
+  <depend>rclrs</depend>
+  <export>
+    <build_type>ament_cargo</build_type>
+  </export>
+</package>

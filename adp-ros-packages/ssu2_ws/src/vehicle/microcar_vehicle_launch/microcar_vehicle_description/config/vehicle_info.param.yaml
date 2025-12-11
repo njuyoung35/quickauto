@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: microcar
+  wheel_base: 1.8
+  wheel_tread: 1.3
+  wheel_radius: 0.25
+  wheel_width: 0.15
+  front_overhang: 0.5
+  rear_overhang: 0.5
+  left_overhang: 0.1
+  right_overhang: 0.1
+  ground_offset: 0.15
+  vehicle_height: 1.5
+  vehicle_width: 1.5000000000000002
+  vehicle_length: 2.8

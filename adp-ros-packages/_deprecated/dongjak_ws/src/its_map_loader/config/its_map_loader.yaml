@@ -1,0 +1,17 @@
+map_loader:
+  ros__parameters:
+    node_shp: "/home/misys/forza_ws/race_stack/data/NODELINKDATA/MOCT_NODE.shp"
+    link_shp: "/home/misys/forza_ws/race_stack/data/NODELINKDATA/MOCT_LINK.shp"
+    multilink_dbf: "/home/misys/forza_ws/race_stack/data/NODELINKDATA/MULTILINK.dbf"
+    turninfo_dbf: "/home/misys/forza_ws/race_stack/data/NODELINKDATA/TURNINFO.dbf"
+    map_frame: "map"
+    resolution: 1.0        # 1m 권장(도심)
+    # grid origin/size는 Extent에서 자동 계산. (수동 오버라이드 필요 시만 쓰세요)
+    origin_x: 0.0
+    origin_y: 0.0
+    override_grid: false    # true면 아래 width/height 사용
+    grid_width: 2000
+    grid_height: 2000
+    publish_markers: true
+    publish_occupancy: true
+

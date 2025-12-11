@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="ssu2_simple_trajectory_follower" exec="main" name="controller" output="screen" />
+</launch>

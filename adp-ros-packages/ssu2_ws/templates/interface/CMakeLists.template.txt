@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION {{ pkg.cmake_version }})
+project({{ pkg.pkg }})
+
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
+
+set(msg_files
+    {% for msg in pkg.msgs %}
+    "msg/{{ msg.msg }}.msg"
+    {% endfor %}
+    {% for srv in pkg.srvs %}
+    "srv/{{ srv.srv }}.srv"
+    {% endfor %}
+    {% for action in pkg.actions %}
+    "action/{{ action.action }}.action"
+    {% endfor %}
+)
+
+{% if pkg.dependencies %}
+set(msg_dependencies
+    {% for dependency in pkg.dependencies %}
+    {{ dependency }}
+    {% endfor %}
+)
+{% endif %}
+
+# PRESERVED_JINJA2_CODEGEN_START
+
+# PRESERVED_JINJA2_CODEGEN_END
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+    ${msg_files}
+    DEPENDENCIES ${msg_dependencies}
+    ADD_LINTER_TESTS
+)
+
+if(BUILD_TESTING)
+    find_package(ament_lint_auto REQUIRED)
+    ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_auto_package()

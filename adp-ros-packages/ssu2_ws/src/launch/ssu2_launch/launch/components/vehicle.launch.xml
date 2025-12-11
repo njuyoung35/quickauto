@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Reference: https://github.com/autowarefoundation/autoware_universe/blob/main/launch/tier4_vehicle_launch/launch/vehicle.launch.xml -->
+
+  <arg name="use_sim_time" default="false"/>
+  <set_parameter name="use_sim_time" value="$(var use_sim_time)"/>
+
+  <arg name="vehicle_model" description="vehicle model name"/>
+  <arg name="sensor_model" description="sensor model name"/>
+  <arg name="launch_vehicle_interface"/>
+  <arg name="vehicle_id" default="$(env VEHICLE_ID default)" description="vehicle specific ID"/>
+  <!-- <arg name="raw_vehicle_cmd_converter_param_path" default="$(find-pkg-share autoware_raw_vehicle_cmd_converter)/config/raw_vehicle_cmd_converter.param.yaml"/> -->
+  <arg name="initial_engage_state" default="false" description="/vehicle/engage state after starting Autoware"/>
+  <arg name="config_dir" default="$(find-pkg-share $(var sensor_model)_description)/config" description="path to dir where sensors_calibration.yaml, etc. are located"/>
+
+  <let name="vehicle_launch_pkg" value="$(find-pkg-share $(var vehicle_model)_launch)"/>
+
+  <!-- vehicle description -->
+  <group>
+    <arg name="model_file" default="$(find-pkg-share ssu2_launch)/config/vehicle/urdf/vehicle.xacro" description="path to the file of model settings (*.xacro)"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" exec="robot_state_publisher">
+      <param name="robot_description" value="$(command 'xacro $(var model_file) vehicle_model:=$(var vehicle_model) sensor_model:=$(var sensor_model) is_ego:=true config_dir:=$(var config_dir)' 'warn')"/>
+    </node>
+  </group>
+
+  <!-- vehicle interface -->
+  <group if="$(var launch_vehicle_interface)">
+    <include file="$(var vehicle_launch_pkg)/launch/vehicle_interface.launch.xml">
+      <arg name="vehicle_id" value="$(var vehicle_id)"/>
+      <!-- <arg name="raw_vehicle_cmd_converter_param_path" value="$(var raw_vehicle_cmd_converter_param_path)"/> -->
+      <arg name="initial_engage_state" value="$(var initial_engage_state)"/>
+    </include>
+  </group>
+</launch>

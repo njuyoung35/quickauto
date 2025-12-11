@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sport_car_vehicle_launch</name>
+  <version>0.0.0</version>
+  <description>The sport_car_vehicle_launch package</description>
+  
+  <maintainer email="njuyoung35@gmail.com">njuyoung35</maintainer>
+  <maintainer email="leejaeya@gmail.com">LeeJaeya-1</maintainer>
+  <maintainer email="leehwanhi@gmail.com">LeeHwanhi</maintainer>
+
+  <license>MIT</license>
+  
+  <author email="njuyoung35@gmail.com">njuyoung35</author>
+  <author email="leejaeya@gmail.com">LeeJaeya-1</author>
+  <author email="leehwanhi@gmail.com">LeeHwanhi</author>
+
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

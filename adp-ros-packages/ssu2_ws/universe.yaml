@@ -1,0 +1,150 @@
+universe:
+  # - module: control
+  #   children:
+  #     - pkg: ssu2_simple_trajectory_follower
+  #       type: node
+  #       lang: rust
+
+  #       purpose: |
+  #         간단한 궤적 추종 코드입니다.
+  #         추종 궤적과 에고 차량의 운동학을 가지고 계산합니다.
+
+  #       inputs:
+  #         - msg: ~/input/reference_trajectory
+  #           type: ssu2_planning_msgs/Trajectory
+  #           description: |
+  #             따라갈 기준 궤적
+  #           remapping: /planning/scenario_planning/ssu2_planning_validator/trajectory
+  #         - msg: ~/input/current_kinematic_state
+  #           type: nav_msgs/Odometry
+  #           description: |
+  #             현재 차량의 상태
+  #           remapping: /simulator/ssu2_localization/kinematic_state
+
+  #       outputs:
+  #         - msg: output/control_cmd
+  #           type: ssu2_control_msgs/Control
+  #           description: |
+  #             생성된 제어 명령
+  #           remapping: /simulator/ssu2_vehicle/manual_control_cmd
+
+  #       parameters:
+  #         - param: use_external_target_vel
+  #           type: bool
+  #           description: |
+  #             외부에서 주입하는 목표 속도 상수 `v_ref`를 사용할지 여부
+  #           default: false
+  #         - param: external_target_vel
+  #           type: float
+  #           description: |
+  #             외부에서 주입하는 목표 속도 상수 `v_ref`.
+  #             `use_external_target_vel`가 `true` 일 경우 사용됩니다.
+  #           unit: m/s
+  #           default: 0.0
+  #         - param: lateral_deviation
+  #           type: float
+  #           description: |
+  #             측면 오프셋 보정값.
+  #             차량의 물리적 모양 보정, 주행 전략 (버스 정류장 회피) 등을 위해 사용 가능합니다.
+  #           unit: m
+  #           default: 0.0
+
+  #       references:
+  #         - https://github.com/autowarefoundation/autoware_universe/blob/main/control/autoware_trajectory_follower_node/design/simple_trajectory_follower-design.md
+
+  #     - pkg: ssu2_pid_longitudinal_controller
+  #       type: algorithm
+  #       lang: rust
+  #       source_codes:
+  #         - pid
+  #         - pid_longitudinal_controller
+  #         - longitudinal_controller_utils
+  #         # - longitudinal_controller_base
+  #       dependencies:
+  #         - ssu2_control_msgs
+  #         - ssu2_planning_msgs
+  #         - nav_msgs
+  #         - geometry_msgs
+  #       purpose: |
+  #         타겟 궤적의 타겟 속도 집합 달성을 위해 가속도를 계산하는 알고리즘입니다.
+  #       references:
+  #         - https://github.com/autowarefoundation/autoware_universe/tree/main/control/autoware_pid_longitudinal_controller
+  
+  - module: planning
+    children:
+
+  - module: global
+    children:
+
+  # - module: simulator
+  #   children:
+  #     - pkg: ssu2_simulator
+  #       type: node
+  #       lang: rust
+  #       source_codes:
+  #         - simulator
+  #       purpose: |
+  #         시뮬레이터 패키지입니다.
+  #         플래닝에게서 궤적 입력 받아서
+  #         컨트롤, 측위, 인지를 모놀리식으로 실행.
+  #       inputs:
+  #         - msg: ~/input/trajectory
+  #           type: ssu2_planning_msgs/Trajectory
+  #           description: |
+  #             생성된 제어 명령
+  #           remapping: /planning/scenario_planning/trajectory
+  #       # outputs:
+  #       #   - msg: ~/output/
+
+  # - module: map
+  #   children:
+  #     - pkg: ssu2_map_test
+  #       type: algorithm
+  #       lang: cpp
+
+      # - pkg: ssu2_load_osm_map
+      #   type: node
+      #   lang: cpp
+      #   purpose: |
+      #     위도, 경도, 반경을 입력받아 osm 파일을 불러옵니다.
+
+      # - repo: lanelet2_rviz2
+      #   url: https://github.com/jkk-research/lanelet2_rviz2.git
+
+      # - repo: lanelet2
+      #   url: https://github.com/fzi-forschungszentrum-informatik/Lanelet2.git
+      #   version: master
+      #   subpaths:
+      #     - lanelet2_core
+      #     - lanelet2_io
+      #     - lanelet2_projection
+
+  - module: launch
+    children:
+      - pkg: ssu2_launch
+        type: launch
+        description: |
+          ssu2_launch
+        exec_depends:
+          - autoware_map_projection_loader
+          - autoware_map_loader
+        install_to_share:
+          - rviz
+          - config
+        references:
+          - https://github.com/autowarefoundation/autoware_launch/tree/main
+
+  - module: vehicle
+    children:
+      - pkg: ssu2_vehicle
+        type: launch
+        description: |
+          sample_vehicle_launch and sample_vehicle_description
+        exec_depends:
+          - xacro
+        install_to_share:
+          - config
+          - mesh
+          - urdf
+        references:
+          - https://github.com/autowarefoundation/autoware_launch/tree/main/vehicle/sample_vehicle_launch

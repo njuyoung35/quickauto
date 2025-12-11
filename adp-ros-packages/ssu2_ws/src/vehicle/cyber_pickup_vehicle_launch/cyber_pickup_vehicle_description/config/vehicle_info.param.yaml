@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: cyber_pickup
+  wheel_base: 3.5
+  wheel_tread: 2.0
+  wheel_radius: 0.45
+  wheel_width: 0.3
+  front_overhang: 1.0
+  rear_overhang: 1.2
+  left_overhang: 0.25
+  right_overhang: 0.25
+  ground_offset: 0.3
+  vehicle_height: 1.9
+  vehicle_width: 2.5
+  vehicle_length: 5.7

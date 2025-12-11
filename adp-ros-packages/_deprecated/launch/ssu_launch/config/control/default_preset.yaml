@@ -1,0 +1,4 @@
+launch:
+  - arg:
+      name: trajectory_follower_mode
+      default: trajectory_follower_node

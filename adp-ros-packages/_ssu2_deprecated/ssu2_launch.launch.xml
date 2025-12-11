@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+  
+  <arg name="workspace_path" default="/home/misys/adp-ros-packages/ssu2_ws" />
+  <arg name="assets_path" default="$(var workspace_path)/assets" />
+  <arg name="sample_map_planning_path" default="$(var assets_path)/sample-map-planning" />
+  <arg name="pointcloud_map_file_name" default="pointcloud_map.pcd" />
+  <arg name="lanelet2_map_file_name" default="lanelet2_map.osm" />
+
+  <!-- <include file="$(find-pkg-share autoware_launch)/launch/components/tier4_map_component.launch.xml">
+    <arg name="map_path" value="$(var sample_map_planning_path)" />
+    <arg name="pointcloud_map_file" value="$(var pointcloud_map_file_name)" />
+    <arg name="lanelet2_map_file" value="$(var lanelet2_map_file_name)" />
+  </include> -->
+
+  <node 
+    pkg="autoware_map_projection_loader" 
+    exec="autoware_map_projection_loader_node" 
+    name="autoware_map_projection_loader"
+    output="screen">
+    <param name="map_projector_info_path" value="$(var sample_map_projector_info_path)" />
+    <param name="lanelet2_map_path" value="$(var lanelet2_sample_map_path)" />
+  </node>
+
+  <node 
+    pkg="autoware_map_loader" 
+    exec="autoware_lanelet2_map_loader" 
+    name="autoware_map_loader"
+    output="screen">
+    <param name="lanelet2_map_path" value="$(var lanelet2_sample_map_path)" />
+    <param name="allow_unsupported_version" value="true" />
+    <param name="center_line_resolution" value="5.0" />
+    <param name="use_waypoints" value="true" />
+  </node>
+
+  <node
+    pkg="autoware_lanelet2_map_visualizer"
+    exec="autoware_lanelet2_map_visualizer"
+    name="autoware_lanelet2_map_visualizer"
+    output="screen"
+    launch-prefix="bash -c 'sleep 1; $0 $@'"
+    >
+    <remap from="input/lanelet2_map" to="vector_map" />
+    <remap from="output/lanelet2_map_marker" to="vector_map_marker" />
+  </node>
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+</launch>

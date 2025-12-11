@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>{{ vehicle.name }}_vehicle_launch</name>
+  <version>{{ version }}</version>
+  <description>The {{ vehicle.name }}_vehicle_launch package</description>
+  
+  {% for maintainer in maintainers %}
+  <maintainer email="{{ maintainer.email }}">{{ maintainer.name }}</maintainer>
+  {% endfor %}
+
+  <license>{{ license }}</license>
+  
+  {% for author in authors %}
+  <author email="{{ author.email }}">{{ author.name }}</author>
+  {% endfor %}
+
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

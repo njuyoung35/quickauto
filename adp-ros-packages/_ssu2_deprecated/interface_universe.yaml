@@ -1,0 +1,126 @@
+$HEADER:
+  name: header
+  type: std_msgs/Header
+$STAMP:
+  name: stamp
+  type: builtin_interfaces/Time
+  description: |
+    Time this message was created
+$CONTROL_TIME:
+  name: control_time
+  type: builtin_interfaces/Time
+  description: |
+    Time this configuration state is to expected to be achieved in (optional)
+---
+universe:
+  - pkg: ssu2_control_msgs
+    type: interface
+    description: |
+      Control messages for Ackermann-style platforms
+    msgs:
+      - msg: Control
+        description: |
+          Control message with lateral and longitudinal control
+        fields:
+          - $STAMP
+          - $CONTROL_TIME
+          - name: lateral
+            type: ssu2_control_msgs/Lateral
+          - name: longitudinal
+            type: ssu2_control_msgs/Longitudinal
+      - msg:  Lateral
+        description: |
+          Lateral control message for Ackermann-style platforms
+          - 양수 : 좌측
+          - 음수 : 우측
+        fields:
+          - $STAMP
+          - $CONTROL_TIME
+          - name: steering_tire_angle
+            type: float32
+            description: |
+              Desired angle of steering tire [rad]
+          - name: steering_tire_rotation_angle
+            type: float32
+            description: |
+              Desired rate of change of the steering tire [rad/s]
+          - name: is_steering_tire_rotation_rate_defined
+            type: bool
+      - msg: Longitudinal
+        description: |
+          Longitudinal control message.
+          - Values are in the base_link frame in X axis
+          - 양수 : 앞으로
+          - 음수 : 뒤로
+        fields:
+          - $STAMP
+          - $CONTROL_TIME
+          - name: velocity
+            type: float32
+            description: |
+              Desired vehicle velocity [m/s]
+          - name: acceleration
+            type: float32
+            description:
+              Desired vehicle acceleration [m/s^2]
+          - name: jerk
+            type: float32
+            description:
+              Desired vehicle jerk [m/s^3]
+          - name: is_acceleration_defined
+            type: bool
+          - name: is_jerk_defined
+            type: bool
+    references:
+      - https://github.com/autowarefoundation/autoware_msgs/tree/main/autoware_control_msgs
+        
+  - pkg: ssu2_planning_msgs
+    type: interface
+    msgs:
+      - msg: Trajectory
+        fields:
+          - $HEADER
+          - name: points
+            type: ssu2_planning_msgs/TrajectoryPoint[]
+      - msg: TrajectoryPoint
+        fields:
+          - name: time_from_start
+            type: builtin_interfaces/Duration
+          - name: pose
+            type: geometry_msgs/Pose
+          - name: longitudinal_velocity_mps
+            type: float32
+          - name: lateral_velocity_mps
+            type: float32
+          - name: acceleration_mps2
+            type: float32
+          - name: heading_rate_rps
+            type: float32
+          - name: front_wheel_angle_rad
+            type: float32
+          - name: rear_wheel_angle_rad
+            type: float32
+    references:
+      - https://github.com/autowarefoundation/autoware_msgs/tree/main/autoware_planning_msgs
+
+  - pkg: ssu2_vehicle_msgs
+    type: interface
+    msgs:
+      - msg: SteeringReport
+        fields:
+          - $STAMP
+          - name: steering_tire_angle_rad
+            type: float32
+  
+  - pkg: ssu2_api_msgs
+    type: interface
+    msgs:
+      - msg: OperationModeState
+        fields:
+          - $STAMP
+          - name: is_ssu2_control_enabled
+            type: bool
+          - name: is_remote_mode_enabled
+            type: bool
+        references:
+          - https://github.com/autowarefoundation/autoware_adapi_msgs/blob/main/autoware_adapi_v1_msgs/operation_mode/msg/OperationModeState.msg

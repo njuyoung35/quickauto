@@ -1,0 +1,8 @@
+global_planner:
+  ros__parameters:
+    mode: "grid"          # "grid"(도심, A*) | "graph"(고속, Dijkstra) – 그래프 모드는 후속 확장
+    start_xy: [200100.0, 600100.0]   # ITRF2000(Tm) 좌표계 예시 – RViz에서 확인 후 조정
+    goal_xy:  [201000.0, 599300.0]
+    map_frame: "map"
+    publish_wgs84: true
+

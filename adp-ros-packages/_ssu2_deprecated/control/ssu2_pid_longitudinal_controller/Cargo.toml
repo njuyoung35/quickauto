@@ -1,0 +1,17 @@
+[package]
+name = "ssu2_pid_longitudinal_controller"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+rclrs = "0.6"
+rosidl_runtime_rs = "0.5"
+
+ssu2_control_msgs = "*"
+ssu2_planning_msgs = "*"
+nav_msgs = "*"
+geometry_msgs = "*"
+
+# PRESERVED_JINJA2_CODEGEN_START
+
+# PRESERVED_JINJA2_CODEGEN_END

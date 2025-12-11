@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: retro_van
+  wheel_base: 2.8
+  wheel_tread: 1.7
+  wheel_radius: 0.35
+  wheel_width: 0.2
+  front_overhang: 0.8
+  rear_overhang: 0.8
+  left_overhang: 0.1
+  right_overhang: 0.1
+  ground_offset: 0.2
+  vehicle_height: 1.8
+  vehicle_width: 1.9000000000000001
+  vehicle_length: 4.3999999999999995

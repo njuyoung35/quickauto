@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: crossover
+  wheel_base: 2.75
+  wheel_tread: 1.65
+  wheel_radius: 0.38
+  wheel_width: 0.23
+  front_overhang: 0.9
+  rear_overhang: 0.9
+  left_overhang: 0.18
+  right_overhang: 0.18
+  ground_offset: 0.2
+  vehicle_height: 1.6
+  vehicle_width: 2.01
+  vehicle_length: 4.55

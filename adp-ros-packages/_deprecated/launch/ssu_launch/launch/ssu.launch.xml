@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Essential parameters -->
+  <arg name="map_path" description="point cloud and lanelet2 map directory path"/>
+  <arg name="vehicle_model" default="sample_vehicle" description="vehicle model name"/>
+  <arg name="sensor_model" default="sample_sensor_kit" description="sensor model name"/>
+  <arg name="pointcloud_container_name" default="pointcloud_container"/>
+  <arg name="data_path" default="$(env HOME)/autoware_data" description="packages data and artifacts directory path"/>
+
+  <!-- Global parameters -->
+  <arg name="use_sim_time" default="true" description="use_sim_time"/>
+  <!-- Auto mode setting -->
+  <arg name="enable_all_modules_auto_mode" default="false" description="enable all module's auto mode"/>
+  <arg name="is_simulation" default="false" description="Autoware's behavior will change depending on whether this is a simulation or not."/>
+
+  <!-- Planning -->
+  <group>
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_planning_component.launch.xml">
+      <arg name="enable_all_modules_auto_mode" value="$(var enable_all_modules_auto_mode)"/>
+      <arg name="is_simulation" value="$(var is_simulation)"/>
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="vehicle_model" value="$(var vehicle_model)"/>
+    </include>
+
+    <!-- Relay node for trajectory topic -->
+    <!-- This is a temporary addition for migration purposes. -->
+    <!-- https://github.com/orgs/autowarefoundation/discussions/5033#discussioncomment-13704802 -->
+    <node pkg="topic_tools" exec="relay" name="trajectory_relay">
+      <param name="input_topic" value="/planning/trajectory"/>
+      <param name="output_topic" value="/planning/scenario_planning/trajectory"/>
+    </node>
+  </group>
+
+  <!-- Control -->
+  <group>
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_control_component.launch.xml">
+      <arg name="use_sim_time" value="$(var use_sim_time)"/>
+      <arg name="vehicle_model" value="$(var vehicle_model)"/>
+    </include>
+  </group>
+
+  <!-- rviz2 -->
+   <group>
+    <node
+      pkg="rviz2"
+      exec="rviz2"
+      name="rviz2"
+      output="screen"
+      args="-d $(var rviz_config) -s $(find-pkg-share ssu2_launch)/rviz/image/autoware.png"
+      if="$(var rviz)"
+      respawn="$(var rviz_respawn)"
+    >
+      <env name="QT_QPA_PLATFORMTHEME" value="qt5ct"/>
+    </node>
+  </group>
+</launch>

@@ -1,0 +1,7 @@
+# 주어진 gps_coordinates 지점에서 거리와 시간을 예측합니다.
+
+ssu2_map_msgs/GPSCoordinates gps_coordinates
+---
+float64 estimated_total_distance
+float64 estimated_total_time
+std_msgs/String message

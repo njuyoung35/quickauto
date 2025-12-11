@@ -1,0 +1,153 @@
+https://github.com/ros/rosdistro
+http://packages.ros.org/ros2/ubuntu
+
+/usr/share/keyrings
+
+apt
+	ros-humble-desktop
+	ros-dev-tools
+	ros-humble-laser-proc (urg_node2 의존)
+$ rosdep init
+
+~/f1tenth_ws/src
+    # git clone https://github.com/ros/diagnostics.git
+    /trasport_drivers
+	    git clone https://github.com/ros-drivers/transport_drivers.git
+	/udp_msgs
+	    git clone https://github.com/flynneva/udp_msgs.git
+	/ackermann_mux
+	    git clone https://github.com/f1tenth/ackermann_mux.git
+	/teleop_tools
+	    git clone https://github.com/ros-teleop/teleop_tools.git
+	/vesc
+	    git clone https://github.com/f1tenth/vesc.git -b ros2
+
+	/urg_node2
+		# hokuyo lidar driver    
+		--recursive https://github.com/Hokuyo-aut/urg_node2.git
+	
+
+~/.config/jstest-gtk
+	jstest-gtk (joystick tester)
+
+# intel realsense camera driver (librealsense)
+/etc/udev/rules.d/99-realsense-libusb.rules
+	udev : 하드웨어 장치의 동적 감지 및 관리
+	libssl-dev (openssl, 보안)
+	xorg-dev : X window 시스템 개발 패키지 (gui)
+	libusb-1.0.0-dev, usbutils (usb)
+	libglfw3-dev (opengl 애플리케이션)
+	libgl1-mesa-dev, libglu1-mesa-dea (opengl 구현체 mesa)
+	git clone https://github.com/IntelRealSense/librealsense.git
+	
+	패키지 적당히 cmake 후, 99-realsense-libusb.rules 만듦?
+	https://github.com/IntelRealSense/librealsense/blob/master/config/99-realsense-libusb.rules
+
+~/f1tenth_ws/src/f1tenth_system
+	git clone https://github.com/goodash2one/f1tenth_system.git -b humble-devel
+	cd f1tenth_system
+	rmdir ackermann_mux, teleop_tools, vesc
+
+~/f1tenth_gym
+	git clone https://github.com/f1tenth/f1tenth_gym.git
+~/Raceline-Optimization
+	git clone https://github.com/goodash2one/Raceline-Optimization.git
+	
+~/f1tenth_ws/src
+	/f1tenth_gym_ros
+	    git clone https://github.com/goodash2one/f1tenth_gym_ros.git
+	/slam_toolbox
+	    git clone https://github.com/goodash2one/slam_toolbox.git
+	/particle_filter
+	    git clone https://github.com/goodash2one/particle_filter.git
+	/bringup
+	    git clone https://github.com/goodash2one/bringup.git
+	/realsense-ros
+	    git clone https://github.com/IntelRealSense/realsense-ros.git -b ros2-master
+
+~/f1tenth_ws/src/CL2-UWaterloo
+	https://github.com/CL2-UWaterloo/f1tenth_ws/tree/main/src에서 pure_pursuit과 safety_node 디렉토리만 가져옴!
+	
+~/f1tenth_ws/src/mpc
+	https://github.com/derekhanbaliq/f1tenth-software-stack/tree/main/mpc 를 들고 옮
+
+
+
+
+
+<설정>
+
+sed 명령어 : 스트림 편집기.
+sed -i "30s/ ... / ... /"
+	-i : in-place editing
+	30번째 줄에서 치환 수행
+
+~/f1tenth_ws/src/f1tenth_gym_ros/config/sim.yaml
+	ch_ros_usage에서 살펴본, yaml로 initial parameter 불러올 때, 여기서 불러오는 것으로 보여요
+~/f1tenth_ws/src/slam_toolbox/config
+
+~$ find . -name "*.yaml"로 찾아보면 이런 용도의 파일들이 나오지 않을까 싶어요
+
+## adding a slam_toolbox launch file for offline mapping in simulation
+## build range_libc python wrapper
+
+~/Raceline-Optimization/requirements.txt
+	필요로하는 파이썬 패키지 버전 정보?
+~/Raceline-Optimization/params/f110.ini
+	1/10 사이즈의 f1 차량을 둘러싼 파라미터를 전부 박아놓은 곳인듯..?
+
+Raceline-Optimization을	위해 python -m venv raceline이라는 가상환경 만들어 쓴다.
+
+# configure pure_pursuit
+~/f1tenth_ws/src/CL2-UWaterloo/pure_pursuit/config/sim_config.yaml
+~/f1tenth_ws/src/CL2-UWaterloo/pure_pursuit/config/config.yaml
+
+# configure mpc
+~/f1tenth_ws/src/mpc/scripts/mpc_node.py
+
+# turn off the plotting options of main_globaltraj_f110.py, Raceline Optimization program 
+
+
+
+
+<레포>
+
+~/f1tenth_ws/src/ackermann_msgs
+    git clone https://github.com/ros-drivers/ackermann_msgs.git -b ros2
+    
+~/f1tenth_ws/src/diagnostics
+	git clone https://github.com/ros/diagnostics.git -b ros2
+
+
+
+
+<기타>
+
+colcon : ros2에서의 package를 빌드, 관리할 수 있는 도구
+	Concept of Libraries for Compilers Installation
+	여태컷 쓰던 "ws" 약자는 workspace를 의미한다고 보면 될 듯?
+	colcon build하면 out of source builds 방식으로, 폴더에 대해 시각적으로 봤을 때 /build, /install, /log 같은 폴더가 생겨난다.
+(ros2) package = node, library, .launch file, .yaml 등 파일 묶는 구조.
+
+### 0. robot_localization(EKF) 패키지 설치
+	apt install ros-humble-robot-localization
+### 1. forza_ws 디렉토리 생성 및 race_stack 클론
+	"jeonseoknam/MAR-Misys-Autonomous-Racing-"라는 private repo가 있는 걸로 보입니다.
+	.netrc에 깃허브 토큰 같은게 있어서 스크립트 상 복사가 되는 걸로 보입니다.
+	결국 이 레포가 복사되는 위치는 ~/forza_ws/race_stack이니 그걸 보는 수 밖에 없겠습니다
+### 2. post_create_command.sh 수정 (src 제거 반영)
+### 3. post_create_command.sh 실행
+### 4. ros-humble-asio-cmake-module 설치
+### 5. filterpy 설치
+### 6. numpy 1.24.4로 재설치
+### 7. nvidia 여부에 따라 pytorch 버전 설치
+### 8. f1tenth_ws용 .activate_f1tenth.sh 생성 
+### 9. forza_ws용 .activate_forza.sh 생성
+# --- ofc 패키지를 forza_ws에 추가 ---
+~/forza_ws/race_stack
+    git clone https://github.com/skylight722/ofc.git ofc
+    ofc = 광학카메라?
+# --- TensorFlow 설치 ---
+# --- controller_enabled.yaml 추가 ---
+	~/forza_ws/race_stack/stack_master/config/controller_enabled.yaml
+	

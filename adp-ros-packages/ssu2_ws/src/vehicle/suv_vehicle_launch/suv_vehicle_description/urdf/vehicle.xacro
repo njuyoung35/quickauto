@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- load parameter -->
+  <xacro:property name="vehicle_info" value="${xacro.load_yaml('$(find suv_vehicle_description)/config/vehicle_info.param.yaml')}"/>
+  <xacro:property name="wheelbase" value="${vehicle_info['ros__parameters']['wheel_base']}" />
+  <xacro:property name="width" value="${vehicle_info['ros__parameters']['wheel_tread']}" />
+  <xacro:property name="height" value="${vehicle_info['ros__parameters']['vehicle_height']}" />
+  <xacro:property name="ground_offset" value="${vehicle_info['ros__parameters']['ground_offset']}" />
+  <xacro:property name="wheel_radius" value="${vehicle_info['ros__parameters']['wheel_radius']}" />
+  <xacro:property name="wheel_length" value="${vehicle_info['ros__parameters']['wheel_width']}" />
+  <xacro:property name="car_name" value="suv" />
+  <!-- <xacro:property name="base_link" value="${car_name}/base_link" unless="$(var is_ego)"/>
+  <xacro:property name="base_link" value="base_link" if="$(var is_ego)"/> -->
+  <xacro:if value="${is_ego}">
+    <xacro:property name="base_link" value="base_link" />
+  </xacro:if>
+  <xacro:unless value="${is_ego}">
+    <xacro:property name="base_link" value="${car_name}/base_link" />
+  </xacro:unless>
+
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1."/>
+  </material>
+
+  <!-- vehicle body -->
+  <link name="${base_link}">
+    <visual>
+      <origin xyz="${vehicle_info['ros__parameters']['wheel_base']/2.0} 0 0" rpy="${pi/2.0} 0 ${pi}"/>
+      <geometry>
+        <mesh filename="package://suv_vehicle_description/mesh/vehicle_suv_simple.obj" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="base_to_back_left_wheel" type="fixed">
+    <parent link="${base_link}"/>
+    <child link="${car_name}/back_left_wheel"/>
+    <origin xyz="0 ${(wheel_length+width)/2} ${wheel_radius}"/>
+  </joint>
+
+  <link name="${car_name}/back_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="${pi/2} 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_back_right_wheel" type="fixed">
+    <parent link="${base_link}"/>
+    <child link="${car_name}/back_right_wheel"/>
+    <origin xyz="0 ${-(wheel_length+width)/2} ${wheel_radius}"/>
+  </joint>
+
+  <link name="${car_name}/back_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="${pi/2} 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_front_left_hinge" type="fixed">
+    <parent link="${base_link}"/>
+    <child link="${car_name}/front_left_hinge"/>
+    <origin xyz="${wheelbase} ${(wheel_length+width)/2} ${wheel_radius}"/>
+  </joint>
+
+  <link name="${car_name}/front_left_hinge"/>
+
+  <joint name="front_left_hinge_to_wheel" type="continuous">
+    <parent link="${car_name}/front_left_hinge"/>
+    <child link="${car_name}/front_left_wheel"/>
+  </joint>
+
+  <link name="${car_name}/front_left_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="${pi/2} 0 0"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_front_right_hinge" type="fixed">
+    <parent link="${base_link}"/>
+    <child link="${car_name}/front_right_hinge"/>
+    <origin xyz="${wheelbase} ${-(wheel_length+width)/2} ${wheel_radius}"/>
+  </joint>
+
+  <link name="${car_name}/front_right_hinge"/>
+
+  <joint name="front_right_hinge_to_wheel" type="continuous">
+    <parent link="${car_name}/front_right_hinge"/>
+    <child link="${car_name}/front_right_wheel"/>
+  </joint>
+
+  <link name="${car_name}/front_right_wheel">
+    <visual>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="${pi/2} 0 0"/>
+    </visual>
+  </link>
+</robot>

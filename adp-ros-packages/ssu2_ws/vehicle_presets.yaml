@@ -1,0 +1,837 @@
+vehicle_presets:
+  # -----------------------------------------------------------
+  # BUS: 박스형 차체, 매우 긴 휠베이스, 평평한 앞/뒤
+  # -----------------------------------------------------------
+  bus:
+    wheel_radius: 0.55
+    wheel_width: 0.35
+    wheel_base: 6.5
+    wheel_tread: 2.2
+    
+    front_overhang: 2.0
+    rear_overhang: 2.5
+    left_overhang: 0.1
+    right_overhang: 0.1
+    
+    ground_offset: 0.35
+    
+    # 높이: 전체적으로 높고 평평함
+    front_bumper_height: 0.8
+    a_pillar_height: 1.2      # 운전석 창문 하단
+    front_roof_height: 3.2
+    rear_roof_height: 3.2
+    d_pillar_height: 1.2      # 뒷유리 하단
+    rear_bumper_height: 0.8
+    
+    # 길이: 앞/뒤 경사가 거의 없는 수직형 (길이 0.1~0.2m)
+    front_bumper_length: 0.2
+    a_pillar_length: 0.2      # 거의 수직인 앞유리
+    d_pillar_length: 0.2      # 거의 수직인 뒷유리
+    rear_bumper_length: 0.2
+    # Roof Length가 대부분을 차지함
+    
+    front_roof_width: 0.05
+    rear_roof_width: 0.05
+    
+    # 챔퍼(모서리): 박스형이므로 작게 설정
+    up_front_chamfer_width: 0.1
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.1
+    down_front_chamfer_height: 0.1
+    
+    up_side_chamfer_width: 0.05
+    up_side_chamfer_height: 0.05
+    down_side_chamfer_width: 0.05
+    down_side_chamfer_height: 0.05
+    
+    up_rear_chamfer_width: 0.1
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.1
+
+    # 색상: 밝은 노란색 - 전통적인 스쿨버스 느낌
+    body_color_r: 0.95
+    body_color_g: 0.85
+    body_color_b: 0.15
+    window_color_r: 0.05
+    window_color_g: 0.05
+    window_color_b: 0.08
+
+  # -----------------------------------------------------------
+  # COMPACT: 소형 세단/해치백 스타일, 짧은 오버행
+  # -----------------------------------------------------------
+  compact:
+    wheel_radius: 0.30
+    wheel_width: 0.20
+    wheel_base: 2.5
+    wheel_tread: 1.5
+    
+    front_overhang: 0.8
+    rear_overhang: 0.7
+    left_overhang: 0.15
+    right_overhang: 0.15
+    
+    ground_offset: 0.15
+    
+    front_bumper_height: 0.5
+    a_pillar_height: 0.9
+    front_roof_height: 1.45
+    rear_roof_height: 1.43
+    d_pillar_height: 0.95
+    rear_bumper_height: 0.55
+    
+    # 길이: 짧은 후드, 짧은 트렁크
+    front_bumper_length: 0.85
+    a_pillar_length: 0.4
+    d_pillar_length: 0.4
+    rear_bumper_length: 0.4
+    
+    front_roof_width: 0.12
+    rear_roof_width: 0.14
+    
+    up_front_chamfer_width: 0.15
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.1
+    down_front_chamfer_height: 0.1
+    
+    up_side_chamfer_width: 0.12
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.12
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.1
+
+    # 색상: 밝은 연두색 - 귀여운 도시형 차량 느낌
+    body_color_r: 0.5
+    body_color_g: 0.9
+    body_color_b: 0.4
+    window_color_r: 0.08
+    window_color_g: 0.08
+    window_color_b: 0.12
+
+  # -----------------------------------------------------------
+  # COUPE: 2도어, 낮은 루프라인, 긴 후드, 패스트백 스타일
+  # -----------------------------------------------------------
+  coupe:
+    wheel_radius: 0.35
+    wheel_width: 0.24
+    wheel_base: 2.7
+    wheel_tread: 1.6
+    
+    front_overhang: 0.95
+    rear_overhang: 0.95
+    left_overhang: 0.18
+    right_overhang: 0.18
+    
+    ground_offset: 0.13
+    
+    front_bumper_height: 0.45
+    a_pillar_height: 0.85
+    front_roof_height: 1.35   # 낮음
+    rear_roof_height: 1.30
+    d_pillar_height: 0.95     # 트렁크 라인이 높음
+    rear_bumper_height: 0.50
+    
+    # 길이: 긴 후드, 매우 완만한 C필러(D-Pillar)
+    front_bumper_length: 1.2
+    a_pillar_length: 0.6      # 많이 누운 앞유리
+    d_pillar_length: 0.8      # 패스트백 스타일 (완만한 뒷유리)
+    rear_bumper_length: 0.5   # 짧은 데크
+    
+    front_roof_width: 0.15
+    rear_roof_width: 0.16
+    
+    up_front_chamfer_width: 0.2
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.15
+    down_front_chamfer_height: 0.1
+    
+    up_side_chamfer_width: 0.15
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.15
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.12
+    down_rear_chamfer_height: 0.1
+
+    # 색상: 붉은 오렌지색 - 스포츠 감각
+    body_color_r: 0.9
+    body_color_g: 0.4
+    body_color_b: 0.1
+    window_color_r: 0.07
+    window_color_g: 0.07
+    window_color_b: 0.1
+
+  # -----------------------------------------------------------
+  # CROSSOVER: SUV와 세단의 중간, 쿠페형 루프라인을 가진 SUV
+  # -----------------------------------------------------------
+  crossover:
+    wheel_radius: 0.38
+    wheel_width: 0.23
+    wheel_base: 2.75
+    wheel_tread: 1.65
+    
+    front_overhang: 0.9
+    rear_overhang: 0.9
+    left_overhang: 0.18
+    right_overhang: 0.18
+    
+    ground_offset: 0.20       # 세단보다 높고 SUV보다 낮음
+    
+    front_bumper_height: 0.65
+    a_pillar_height: 1.1
+    front_roof_height: 1.60
+    rear_roof_height: 1.55
+    d_pillar_height: 1.1
+    rear_bumper_height: 0.65
+    
+    # 길이
+    front_bumper_length: 1.0
+    a_pillar_length: 0.55
+    d_pillar_length: 0.6      # SUV보다 완만한 뒷유리
+    rear_bumper_length: 0.4
+    
+    front_roof_width: 0.13
+    rear_roof_width: 0.14
+    
+    up_front_chamfer_width: 0.18
+    up_front_chamfer_height: 0.12
+    down_front_chamfer_width: 0.12
+    down_front_chamfer_height: 0.15
+    
+    up_side_chamfer_width: 0.14
+    up_side_chamfer_height: 0.12
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.12
+    
+    up_rear_chamfer_width: 0.14
+    up_rear_chamfer_height: 0.12
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.12
+
+    # 색상: 청록색 - 현대적이고 세련된 느낌
+    body_color_r: 0.2
+    body_color_g: 0.7
+    body_color_b: 0.7
+    window_color_r: 0.06
+    window_color_g: 0.06
+    window_color_b: 0.09
+
+  # -----------------------------------------------------------
+  # HATCHBACK: 트렁크가 없고 뒤가 수직에 가까운 형태
+  # -----------------------------------------------------------
+  hatchback:
+    wheel_radius: 0.32
+    wheel_width: 0.21
+    wheel_base: 2.6
+    wheel_tread: 1.55
+    
+    front_overhang: 0.85
+    rear_overhang: 0.75     # 짧은 리어 오버행
+    left_overhang: 0.16
+    right_overhang: 0.16
+    
+    ground_offset: 0.15
+    
+    front_bumper_height: 0.55
+    a_pillar_height: 0.95
+    front_roof_height: 1.50
+    rear_roof_height: 1.48  # 루프가 뒤까지 높게 유지
+    d_pillar_height: 1.0    # 해치 도어 유리 하단
+    rear_bumper_height: 0.55
+    
+    # 길이: 뒷부분이 뚝 떨어짐
+    front_bumper_length: 0.9
+    a_pillar_length: 0.45
+    d_pillar_length: 0.35   # 다소 가파른 뒷유리
+    rear_bumper_length: 0.2 # 트렁크 돌출부 거의 없음
+    
+    front_roof_width: 0.12
+    rear_roof_width: 0.13
+    
+    up_front_chamfer_width: 0.15
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.1
+    down_front_chamfer_height: 0.1
+    
+    up_side_chamfer_width: 0.12
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.12
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.1
+
+    # 색상: 보라색 - 젊고 개성 있는 느낌
+    body_color_r: 0.7
+    body_color_g: 0.3
+    body_color_b: 0.8
+    window_color_r: 0.09
+    window_color_g: 0.09
+    window_color_b: 0.12
+
+  # -----------------------------------------------------------
+  # MINIVAN: 원박스에 가까운 형태, 짧은 보닛, 넓은 공간
+  # -----------------------------------------------------------
+  minivan:
+    wheel_radius: 0.35
+    wheel_width: 0.22
+    wheel_base: 3.0
+    wheel_tread: 1.7
+    
+    front_overhang: 0.9
+    rear_overhang: 1.0
+    left_overhang: 0.18
+    right_overhang: 0.18
+    
+    ground_offset: 0.20
+    
+    front_bumper_height: 0.6
+    a_pillar_height: 1.1
+    front_roof_height: 1.80   # 높음
+    rear_roof_height: 1.80    # 뒤까지 평평
+    d_pillar_height: 1.1
+    rear_bumper_height: 0.6
+    
+    # 길이: 보닛과 앞유리가 이어지는 라인
+    front_bumper_length: 0.7  # 짧은 보닛
+    a_pillar_length: 0.7      # 길고 완만한 앞유리
+    d_pillar_length: 0.3      # 수직에 가까운 뒷유리
+    rear_bumper_length: 0.3   # 짧은 리어 범퍼
+    
+    front_roof_width: 0.1
+    rear_roof_width: 0.1
+    
+    up_front_chamfer_width: 0.15
+    up_front_chamfer_height: 0.15
+    down_front_chamfer_width: 0.1
+    down_front_chamfer_height: 0.15
+    
+    up_side_chamfer_width: 0.1
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.08
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.1
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.1
+
+    # 색상: 차체가 어두운 색이므로 창문을 하늘색으로
+    body_color_r: 0.1
+    body_color_g: 0.1
+    body_color_b: 0.1
+    window_color_r: 0.5
+    window_color_g: 0.7
+    window_color_b: 0.9
+
+  # -----------------------------------------------------------
+  # PICKUP: (제공된 설정 유지)
+  # -----------------------------------------------------------
+  pickup:
+    wheel_radius: 0.45
+    wheel_width: 0.28
+    wheel_base: 3.2
+    wheel_tread: 1.75
+    
+    front_overhang: 1.00
+    rear_overhang: 1.40
+    left_overhang: 0.20
+    right_overhang: 0.20
+    
+    ground_offset: 0.28
+    
+    front_bumper_height: 0.90
+    a_pillar_height: 1.45
+    front_roof_height: 1.85
+    rear_roof_height: 1.83
+    d_pillar_height: 0.78
+    rear_bumper_height: 0.70
+    
+    front_bumper_length: 0.85
+    a_pillar_length: 0.50
+    d_pillar_length: 0.35
+    rear_bumper_length: 1.50
+    
+    front_roof_width: 0.12
+    rear_roof_width: 0.14
+    
+    up_front_chamfer_width: 0.16
+    up_front_chamfer_height: 0.12
+    down_front_chamfer_width: 0.14
+    down_front_chamfer_height: 0.18
+    
+    up_side_chamfer_width: 0.14
+    up_side_chamfer_height: 0.12
+    down_side_chamfer_width: 0.12
+    down_side_chamfer_height: 0.14
+    
+    up_rear_chamfer_width: 0.10
+    up_rear_chamfer_height: 0.08
+    down_rear_chamfer_width: 0.08
+    down_rear_chamfer_height: 0.10
+
+    # 색상: 흰색 - 클래식한 픽업트럭 느낌
+    body_color_r: 0.95
+    body_color_g: 0.95
+    body_color_b: 0.95
+    window_color_r: 0.08
+    window_color_g: 0.08
+    window_color_b: 0.11
+
+  # -----------------------------------------------------------
+  # SEDAN: 가장 표준적인 3박스 형태 (보닛, 캐빈, 트렁크)
+  # -----------------------------------------------------------
+  sedan:
+    wheel_radius: 0.33
+    wheel_width: 0.22
+    wheel_base: 2.85
+    wheel_tread: 1.6
+    
+    front_overhang: 0.95
+    rear_overhang: 1.05
+    left_overhang: 0.17
+    right_overhang: 0.17
+    
+    ground_offset: 0.15
+    
+    front_bumper_height: 0.55
+    a_pillar_height: 0.95
+    front_roof_height: 1.45
+    rear_roof_height: 1.43
+    d_pillar_height: 1.0      # 트렁크 높이
+    rear_bumper_height: 0.60
+    
+    # 길이: 균형 잡힌 3분할
+    front_bumper_length: 1.1  # 넉넉한 보닛
+    a_pillar_length: 0.5
+    d_pillar_length: 0.5      # 적당한 뒷유리 경사
+    rear_bumper_length: 0.8   # 뚜렷한 트렁크
+    
+    front_roof_width: 0.14
+    rear_roof_width: 0.14
+    
+    up_front_chamfer_width: 0.18
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.12
+    down_front_chamfer_height: 0.12
+    
+    up_side_chamfer_width: 0.12
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.12
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.12
+
+    # 색상: 파란색 - 가장 일반적인 세단 색상
+    body_color_r: 0.2
+    body_color_g: 0.4
+    body_color_b: 0.8
+    window_color_r: 0.07
+    window_color_g: 0.07
+    window_color_b: 0.1
+
+  # -----------------------------------------------------------
+  # SPORT_CAR: 매우 낮고 넓음, 극단적인 공기역학적 라인
+  # -----------------------------------------------------------
+  sport_car:
+    wheel_radius: 0.35
+    wheel_width: 0.28       # 광폭 타이어
+    wheel_base: 2.6
+    wheel_tread: 1.7        # 와이드 바디
+    
+    front_overhang: 1.0
+    rear_overhang: 0.9
+    left_overhang: 0.22
+    right_overhang: 0.22
+    
+    ground_offset: 0.10     # 매우 낮음
+    
+    front_bumper_height: 0.35
+    a_pillar_height: 0.75
+    front_roof_height: 1.20 # 매우 낮은 전고
+    rear_roof_height: 1.18
+    d_pillar_height: 0.85
+    rear_bumper_height: 0.45
+    
+    # 길이: 뾰족한 앞, 누운 유리
+    front_bumper_length: 1.2
+    a_pillar_length: 0.7    # 매우 누운 앞유리
+    d_pillar_length: 0.7
+    rear_bumper_length: 0.4
+    
+    front_roof_width: 0.16
+    rear_roof_width: 0.18   # 뒤쪽 펜더가 더 빵빵함
+    
+    up_front_chamfer_width: 0.25 # 날렵한 앞모습
+    up_front_chamfer_height: 0.15
+    down_front_chamfer_width: 0.2
+    down_front_chamfer_height: 0.1
+    
+    up_side_chamfer_width: 0.18
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.15
+    down_side_chamfer_height: 0.08
+    
+    up_rear_chamfer_width: 0.18
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.15
+    down_rear_chamfer_height: 0.15
+
+    # 색상: 빨간색 - 고전적인 스포츠카 색상
+    body_color_r: 0.9
+    body_color_g: 0.2
+    body_color_b: 0.2
+    window_color_r: 0.1
+    window_color_g: 0.1
+    window_color_b: 0.15
+
+  # -----------------------------------------------------------
+  # SUV: 크고 높고 박스형, 높은 지상고
+  # -----------------------------------------------------------
+  suv:
+    wheel_radius: 0.40
+    wheel_width: 0.26
+    wheel_base: 2.9
+    wheel_tread: 1.7
+    
+    front_overhang: 0.95
+    rear_overhang: 1.1
+    left_overhang: 0.18
+    right_overhang: 0.18
+    
+    ground_offset: 0.25     # 오프로드 클리어런스
+    
+    front_bumper_height: 0.8
+    a_pillar_height: 1.2
+    front_roof_height: 1.75 # 높음
+    rear_roof_height: 1.75
+    d_pillar_height: 1.2    # 윈도우 라인이 높음
+    rear_bumper_height: 0.8
+    
+    # 길이
+    front_bumper_length: 1.0  # 듬직한 후드
+    a_pillar_length: 0.5
+    d_pillar_length: 0.4      # 해치백보다 약간 덜 수직
+    rear_bumper_length: 0.3
+    
+    front_roof_width: 0.12
+    rear_roof_width: 0.12
+    
+    up_front_chamfer_width: 0.15
+    up_front_chamfer_height: 0.15
+    down_front_chamfer_width: 0.12
+    down_front_chamfer_height: 0.18
+    
+    up_side_chamfer_width: 0.12
+    up_side_chamfer_height: 0.12
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.15
+    
+    up_rear_chamfer_width: 0.12
+    up_rear_chamfer_height: 0.12
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.15
+
+    # 색상: 진한 녹색 - 오프로드와 어울리는 색상
+    body_color_r: 0.2
+    body_color_g: 0.5
+    body_color_b: 0.2
+    window_color_r: 0.06
+    window_color_g: 0.06
+    window_color_b: 0.09
+
+  # -----------------------------------------------------------
+  # WAGON: 세단 앞모습 + SUV/해치백의 적재공간 (긴 루프)
+  # -----------------------------------------------------------
+  wagon:
+    wheel_radius: 0.33
+    wheel_width: 0.22
+    wheel_base: 2.85
+    wheel_tread: 1.6
+    
+    front_overhang: 0.95
+    rear_overhang: 1.1
+    left_overhang: 0.17
+    right_overhang: 0.17
+    
+    ground_offset: 0.15
+    
+    front_bumper_height: 0.55
+    a_pillar_height: 0.95
+    front_roof_height: 1.45
+    rear_roof_height: 1.45  # 뒤까지 평평하게 유지
+    d_pillar_height: 1.0
+    rear_bumper_height: 0.60
+    
+    # 길이: 세단과 비슷하나 뒤쪽만 다름
+    front_bumper_length: 1.1
+    a_pillar_length: 0.5
+    d_pillar_length: 0.4    # 해치백 스타일의 뒷유리
+    rear_bumper_length: 0.3 # 박스형 후면
+    
+    front_roof_width: 0.14
+    rear_roof_width: 0.14
+    
+    up_front_chamfer_width: 0.15
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.12
+    down_front_chamfer_height: 0.12
+    
+    up_side_chamfer_width: 0.12
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.12
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.1
+    down_rear_chamfer_height: 0.12
+
+    # 색상: 갈색 - 우드 패널 느낌의 고전적인 왜건
+    body_color_r: 0.6
+    body_color_g: 0.4
+    body_color_b: 0.2
+    window_color_r: 0.08
+    window_color_g: 0.08
+    window_color_b: 0.11
+
+  # -----------------------------------------------------------
+  # MICROCAR: 초소형 도심형 자동차, 동글동글한 디자인
+  # -----------------------------------------------------------
+  microcar:
+    wheel_radius: 0.25
+    wheel_width: 0.15
+    wheel_base: 1.8
+    wheel_tread: 1.3
+    
+    front_overhang: 0.5
+    rear_overhang: 0.5
+    left_overhang: 0.1
+    right_overhang: 0.1
+    
+    ground_offset: 0.15
+    
+    # 높이: 작지만 실내 공간 확보를 위해 약간 높게
+    front_bumper_height: 0.5
+    a_pillar_height: 0.8
+    front_roof_height: 1.5
+    rear_roof_height: 1.5
+    d_pillar_height: 0.8
+    rear_bumper_height: 0.5
+    
+    # 길이: 전체 길이 약 2.8m. 매우 짧은 앞뒤.
+    front_bumper_length: 0.4
+    a_pillar_length: 0.3
+    d_pillar_length: 0.3
+    rear_bumper_length: 0.3
+    # 남은 루프 길이: (1.8+0.5+0.5) - (0.4+0.3+0.3+0.3) = 2.8 - 1.3 = 1.5m
+    
+    front_roof_width: 0.1
+    rear_roof_width: 0.1
+    
+    # Chamfer: 적극적으로 사용하여 동글동글하게 만듦
+    up_front_chamfer_width: 0.25
+    up_front_chamfer_height: 0.2
+    down_front_chamfer_width: 0.2
+    down_front_chamfer_height: 0.2
+    
+    up_side_chamfer_width: 0.2
+    up_side_chamfer_height: 0.15
+    down_side_chamfer_width: 0.15
+    down_side_chamfer_height: 0.15
+    
+    up_rear_chamfer_width: 0.25
+    up_rear_chamfer_height: 0.2
+    down_rear_chamfer_width: 0.2
+    down_rear_chamfer_height: 0.2
+
+    # 색상: 핑크색 - 귀여운 마이크로카 느낌
+    body_color_r: 0.95
+    body_color_g: 0.6
+    body_color_b: 0.8
+    window_color_r: 0.07
+    window_color_g: 0.07
+    window_color_b: 0.1
+
+  # -----------------------------------------------------------
+  # CYBER PICKUP: 극단적인 직선 위주의 미래형 트럭
+  # -----------------------------------------------------------
+  cyber_pickup:
+    wheel_radius: 0.45
+    wheel_width: 0.3
+    wheel_base: 3.5
+    wheel_tread: 2.0
+    
+    front_overhang: 1.0
+    rear_overhang: 1.2
+    left_overhang: 0.25
+    right_overhang: 0.25
+    
+    ground_offset: 0.3
+    
+    # 높이: 루프 정점이 매우 높고 뾰족함
+    front_bumper_height: 0.8
+    a_pillar_height: 1.2
+    front_roof_height: 1.9  # 루프 꼭지점
+    rear_roof_height: 1.85  # 루프 꼭지점 부근
+    d_pillar_height: 1.1    # 베드 시작점
+    rear_bumper_height: 0.8
+    
+    # 길이: A필러와 D필러를 매우 길게 하여 루프 길이를 최소화 (삼각형 형태)
+    front_bumper_length: 0.8
+    a_pillar_length: 1.5    # 매우 누운 앞유리
+    d_pillar_length: 1.3    # 캐빈에서 베드로 이어지는 긴 사선
+    rear_bumper_length: 1.2 # 긴 베드
+    # 남은 루프 길이: (3.5+1.0+1.2) - (0.8+1.5+1.3+1.2) = 5.7 - 4.8 = 0.9m (짧은 루프 꼭지점 구간)
+    
+    front_roof_width: 0.05  # 좁은 루프
+    rear_roof_width: 0.05
+    
+    # Chamfer: 거의 없애서 날카로운 각을 강조
+    up_front_chamfer_width: 0.02
+    up_front_chamfer_height: 0.02
+    down_front_chamfer_width: 0.02
+    down_front_chamfer_height: 0.02
+    
+    up_side_chamfer_width: 0.02
+    up_side_chamfer_height: 0.02
+    down_side_chamfer_width: 0.02
+    down_side_chamfer_height: 0.02
+    
+    up_rear_chamfer_width: 0.02
+    up_rear_chamfer_height: 0.02
+    down_rear_chamfer_width: 0.02
+    down_rear_chamfer_height: 0.02
+
+    # 색상: 은색/회색 - 미래지향적인 느낌
+    body_color_r: 0.7
+    body_color_g: 0.7
+    body_color_b: 0.75
+    window_color_r: 0.08
+    window_color_g: 0.08
+    window_color_b: 0.11
+
+  # -----------------------------------------------------------
+  # RETRO VAN: 앞이 둥근 캡슐 형태의 고전적인 밴
+  # -----------------------------------------------------------
+  retro_van:
+    wheel_radius: 0.35
+    wheel_width: 0.2
+    wheel_base: 2.8
+    wheel_tread: 1.7
+    
+    front_overhang: 0.8
+    rear_overhang: 0.8
+    left_overhang: 0.1
+    right_overhang: 0.1
+    
+    ground_offset: 0.2
+    
+    # 높이: 전체적으로 높고 평평한 박스카
+    front_bumper_height: 0.6
+    a_pillar_height: 1.0
+    front_roof_height: 1.8
+    rear_roof_height: 1.8
+    d_pillar_height: 1.0
+    rear_bumper_height: 0.6
+    
+    # 길이: 보닛이 거의 없는 원박스 형태
+    front_bumper_length: 0.3
+    a_pillar_length: 0.4
+    d_pillar_length: 0.3
+    rear_bumper_length: 0.3
+    
+    front_roof_width: 0.1
+    rear_roof_width: 0.1
+    
+    # Chamfer: 전면부 상하단 챔퍼를 극대화하여 둥근 캡슐 느낌 구현
+    up_front_chamfer_width: 0.4  # 앞이 매우 둥글게
+    up_front_chamfer_height: 0.4
+    down_front_chamfer_width: 0.3
+    down_front_chamfer_height: 0.3
+    
+    up_side_chamfer_width: 0.15
+    up_side_chamfer_height: 0.15
+    down_side_chamfer_width: 0.1
+    down_side_chamfer_height: 0.1
+    
+    up_rear_chamfer_width: 0.2   # 뒤는 상대적으로 덜 둥글게
+    up_rear_chamfer_height: 0.2
+    down_rear_chamfer_width: 0.15
+    down_rear_chamfer_height: 0.15
+
+    # 색상: 주황색 - 70년대 히피 밴 느낌
+    body_color_r: 0.95
+    body_color_g: 0.6
+    body_color_b: 0.2
+    window_color_r: 0.07
+    window_color_g: 0.07
+    window_color_b: 0.1
+
+  # -----------------------------------------------------------
+  # MOON BUGGY: 지상고가 매우 높고 하단이 들린 탐사 차량
+  # -----------------------------------------------------------
+  moon_buggy:
+    wheel_radius: 0.5
+    wheel_width: 0.4
+    wheel_base: 2.5
+    wheel_tread: 2.2
+    
+    front_overhang: 0.6
+    rear_overhang: 0.6
+    left_overhang: 0.1
+    right_overhang: 0.1
+    
+    ground_offset: 0.6      # 매우 높은 지상고
+    
+    # 높이: 차체 자체는 납작함
+    front_bumper_height: 1.0
+    a_pillar_height: 1.3
+    front_roof_height: 1.6
+    rear_roof_height: 1.6
+    d_pillar_height: 1.3
+    rear_bumper_height: 1.0
+    
+    # 길이: 짧고 기능적인 구조
+    front_bumper_length: 0.5
+    a_pillar_length: 0.4
+    d_pillar_length: 0.4
+    rear_bumper_length: 0.5
+    
+    front_roof_width: 0.2
+    rear_roof_width: 0.2
+    
+    # Chamfer: 하단 챔퍼 높이를 키워서 차체 바닥이 높게 커팅된 느낌 강조
+    up_front_chamfer_width: 0.2
+    up_front_chamfer_height: 0.1
+    down_front_chamfer_width: 0.3
+    down_front_chamfer_height: 0.3 # 바닥을 많이 깎음
+    
+    up_side_chamfer_width: 0.1
+    up_side_chamfer_height: 0.1
+    down_side_chamfer_width: 0.2
+    down_side_chamfer_height: 0.3 # 옆 바닥도 많이 깎음
+    
+    up_rear_chamfer_width: 0.2
+    up_rear_chamfer_height: 0.1
+    down_rear_chamfer_width: 0.3
+    down_rear_chamfer_height: 0.3 # 뒷 바닥도 많이 깎음
+
+    # 색상: 차체가 어두운 색이므로 창문을 밝은 터콰이즈 색으로
+    body_color_r: 0.3
+    body_color_g: 0.3
+    body_color_b: 0.3
+    window_color_r: 0.4
+    window_color_g: 0.8
+    window_color_b: 0.8

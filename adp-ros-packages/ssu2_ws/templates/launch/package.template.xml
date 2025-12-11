@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>{{ pkg.pkg }}</name>
+  <version>{{ pkg.version }}</version>
+  <description>
+    {{ pkg.description | indent(4) }}
+  </description>
+
+  {% for maintainer in pkg.maintainers %}
+  <maintainer email="{{ maintainer.email }}">{{ maintainer.name }}</maintainer>
+  {% endfor %}
+
+  <license>{{ pkg.license }}</license>
+  
+  {% for author in pkg.authors %}
+  <author email="{{ author.email }}">{{ author.name }}</author>
+  {% endfor %}
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  {% for exec_depend in pkg.exec_depends %}
+  <exec_depend>{{ exec_depend }}</exec_depend>
+  {% endfor %}
+
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

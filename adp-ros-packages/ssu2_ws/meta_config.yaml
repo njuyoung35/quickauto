@@ -1,0 +1,18 @@
+maintainers:
+  - name: njuyoung35
+    email: njuyoung35@gmail.com
+  - name: LeeJaeya-1
+    email: leejaeya@gmail.com
+  - name: LeeHwanhi
+    email: leehwanhi@gmail.com
+authors:
+  - name: njuyoung35
+    email: njuyoung35@gmail.com
+  - name: LeeJaeya-1
+    email: leejaeya@gmail.com
+  - name: LeeHwanhi
+    email: leehwanhi@gmail.com
+license: MIT
+cmake_version: "3.8"
+rust_edition: "2021"
+pkg_default_version: "0.0.0"

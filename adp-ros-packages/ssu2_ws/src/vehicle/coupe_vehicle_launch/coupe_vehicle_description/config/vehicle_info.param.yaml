@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: coupe
+  wheel_base: 2.7
+  wheel_tread: 1.6
+  wheel_radius: 0.35
+  wheel_width: 0.24
+  front_overhang: 0.95
+  rear_overhang: 0.95
+  left_overhang: 0.18
+  right_overhang: 0.18
+  ground_offset: 0.13
+  vehicle_height: 1.35
+  vehicle_width: 1.96
+  vehicle_length: 4.6000000000000005

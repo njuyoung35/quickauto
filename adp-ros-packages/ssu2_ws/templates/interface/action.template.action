@@ -1,0 +1,25 @@
+{% if action.description %}
+{{ action.description | comment_hash }}
+{% endif %}
+
+{% for goal_request in action.goal_requests %}
+{% if goal_request.description %}
+{{ goal_request.description | comment_hash }}
+{% endif %}
+{{ goal_request.type }} {{ goal_request.name }}
+{% endfor %}
+---
+{% endfor %}
+{% for response in action.responses %}
+{% if response.description %}
+{{ response.description | comment_hash }}
+{% endif %}
+{{ response.type }} {{ response.name }}
+{% endfor %}
+---
+{% for feedback in action.feedbacks %}
+{% if feedback.description %}
+{{ feedback.description | comment_hash }}
+{% endif %}
+{{ feedback.type }} {{ feedback.name }}
+{% endfor %}

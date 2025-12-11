@@ -1,0 +1,14 @@
+projector_type: MGRS
+vertical_datum: WGS84
+mgrs_grid: "54SVE"
+
+latitude: 37.0
+longitude: 127.0
+altitude: 0.0
+scale: 1.0
+
+
+
+# projector_type: MGRS
+# vertical_datum: WGS84
+# mgrs_grid: 54SVE

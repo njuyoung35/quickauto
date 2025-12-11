@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION {{ pkg.cmake_version }})
+project({{ pkg.pkg }})
+
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+ament_auto_package(
+  INSTALL_TO_SHARE
+  {% if pkg.install_to_share is not none -%}
+  {% for share_path in pkg.install_to_share -%}
+  {{ share_path }}
+  {% endfor %}
+  {%- endif %}
+)

@@ -1,0 +1,96 @@
+universe:
+  - module: autoware
+    children:
+      # - repo: autoware_launch
+      #   url: https://github.com/autowarefoundation/autoware_launch.git
+      #   version: main
+
+      - repo: autoware_msgs
+        url: https://github.com/autowarefoundation/autoware_msgs.git
+        version: main
+        subpaths:
+          - autoware_map_msgs
+          - autoware_common_msgs
+          - autoware_planning_msgs
+
+      - repo: autoware_core
+        url: https://github.com/autowarefoundation/autoware_core.git
+        version: main
+        subpaths:
+          - map/autoware_map_projection_loader
+          - map/autoware_map_loader
+          - map/autoware_lanelet2_map_visualizer
+          - common/autoware_component_interface_specs
+          - common/autoware_geography_utils
+
+      - repo: autoware_universe
+        url: https://github.com/autowarefoundation/autoware_universe.git
+        version: main
+        subpaths:
+          - map/autoware_map_tf_generator
+          - launch/tier4_map_launch
+      
+      - repo: tier4_autoware_msgs
+        url: https://github.com/tier4/tier4_autoware_msgs.git
+        version: tier4/universe
+        subpaths:
+          - tier4_external_api_msgs
+
+      - repo: autoware_lanelet2_extension
+        url: https://github.com/autowarefoundation/autoware_lanelet2_extension.git
+        version: main
+        subpaths:
+          - autoware_lanelet2_extension
+
+      - repo: sensor_kit
+        url: https://github.com/autowarefoundation/autoware_launch.git
+        version: main
+        subpaths:
+          - sensor_kit/sample_sensor_kit_launch
+
+      - repo: sensor_component_description
+        url: https://github.com/tier4/sensor_component_description.git
+        version: main
+        subpaths:
+          - camera_description
+          - imu_description
+          - velodyne_description
+          - vls_description
+        
+  # - module: utils
+  #   children:
+  #     - repo: mrt_cmake_modules
+  #       url: https://github.com/KIT-MRT/mrt_cmake_modules.git
+  #       version: master
+
+  # - module: ros2
+  #   children:
+  #     - repo: common_interfaces
+  #       url: https://github.com/ros2/common_interfaces.git
+  #       version: humble
+  #     - repo: rcl_interfaces
+  #       url: https://github.com/ros2/rcl_interfaces.git
+  #       version: humble
+  #     - repo: test_interface_files
+  #       url: https://github.com/ros2/test_interface_files.git
+  #       version: humble
+  #     - repo: rosidl_defaults
+  #       url: https://github.com/ros2/rosidl_defaults.git
+  #       version: humble
+  #     - repo: unique_identifier_msgs
+  #       url: https://github.com/ros2/unique_identifier_msgs.git
+  #       version: humble
+  
+  # - module: ros2-rust
+  #   children:
+  #     - repo: ros2_rust
+  #       url: https://github.com/ros2-rust/ros2_rust.git
+  #       version: main
+  #       subpaths:
+  #         - rclrs
+  #     - repo: rosidl_rust
+  #       url: https://github.com/ros2-rust/rosidl_rust.git
+  #       version: main
+  #     - repo: rosidl_runtime_rs
+  #       url: https://github.com/ros2-rust/rosidl_runtime_rs.git
+  #       version: main

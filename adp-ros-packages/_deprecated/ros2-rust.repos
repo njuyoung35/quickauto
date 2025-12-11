@@ -1,0 +1,26 @@
+src/ros2/common_interfaces:
+    url: https://github.com/ros2/common_interfaces.git
+    version: humble
+src/ros2/rcl_interfaces:
+    url: https://github.com/ros2/rcl_interfaces.git
+    version: humble
+src/ros2/test_interface_files:
+    url: https://github.com/ros2/test_interface_files.git
+    version: humble
+src/ros2/rosidl_defaults:
+    url: https://github.com/ros2/rosidl_defaults.git
+    version: humble
+src/ros2/unique_identifier_msgs:
+    url: https://github.com/ros2/unique_identifier_msgs.git
+    version: humble
+src/ros2-rust/ros2_rust:
+    url: https://github.com/ros2-rust/ros2_rust.git
+    version: main
+    subpaths:
+        - rclrs
+src/ros2-rust/rosidl_runtime_rs:
+    url: https://github.com/ros2-rust/rosidl_rust.git
+    version: main
+src/ros2-rust/rosidl_rust:
+    url: https://github.com/ros2-rust/rosidl_runtime_rs.git
+    version: main

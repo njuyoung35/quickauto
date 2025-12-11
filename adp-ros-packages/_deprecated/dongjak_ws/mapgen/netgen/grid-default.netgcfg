@@ -1,0 +1,34 @@
+<netgenerateConfiguration>
+    <grid_network>
+        <grid>true</grid>
+        <grid.number>10</grid.number>
+        <grid.length>100</grid.length>
+        <grid.attach-length>2.0</grid.attach-length>
+    </grid_network>
+    <processing>
+        <turn-lanes>2</turn-lanes>
+        <turn-lanes.length>20.0</turn-lanes.length>
+        <perturb-x>10.0</perturb-x>
+        <perturb-y>10.0</perturb-y>
+        <bidi-probability>0.5</bidi-probability>
+        <random-lanenumber>true</random-lanenumber>
+        <random-priority>true</random-priority>
+        <random-type>true</random-type>
+        <numerical-ids>false</numerical-ids>
+    </processing>
+    <building_defaults>
+        <default.lanenumber>3</default.lanenumber>
+        <default.lanewidth>3.0</default.lanewidth>
+        <default.spreadtype>center</default.spreadtype>
+        <default.speed>30.0</default.speed>
+        <default.friction>1.0</default.friction>
+        <default.priority>-1</default.priority>
+        <!-- <default.type value="motorway"/> -->
+    </building_defaults>
+    <output>
+        <output-prefix>grid-default</output-prefix>
+    </output>
+    <random_number>
+        <seed>1234</seed>
+    </random_number>
+</netgenerateConfiguration>

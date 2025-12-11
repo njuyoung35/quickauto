@@ -1,0 +1,6 @@
+
+float64 latitude
+float64 longitude
+---
+# 변경 성공 여부
+bool success

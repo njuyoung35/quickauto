@@ -1,0 +1,345 @@
+f1tenth gym 환경 : 비동시성, 다수 차체 인스턴스가 있는 현실적인 차체 시뮬레이션 연구를 위한 환경
+	결정론적 아이디어 기반 디자인
+	모든 에이전트의 물리 시뮬레이션은 동시적으로 처리됨
+	모든 랜덤성은 seeded이거 모든 실험은 재현가능함
+	이것은 real-time 실행보다 30배 빠르게 배속할 수 있는 장점이 있으며 병렬 처리도 가능케 함
+
+performance + safety
+센서관측은 상대의 행동을 고유한 것으로 결정짓지 않는다.
+
+f1tenth virtual racing online competition
+	blue agent, blue agent elapsed time, lap count, collision(bool)
+	speed, throttle
+	
+gym 환경은, formulaZero 프로젝트의 시뮬레이터 엔진으로 사용되기도 한다.
+gym 환경은, TunerCar 프로젝트의 시뮬레이터 엔진으로 사용되기도 한다.
+	autonomous racing에 대한 슈퍼최적화 toolchain
+f1tenth platform
+	build, code, and race!
+	- chassis design + powerboard
+	- system integration (lidar, RGBD cemras, VESC, GPU computing platform Jetson)
+	- sw architecture : ros (perception, planning, control) + GPU accelerated libraries (tensorflow, cuda, pytorch)
+	- research enabled : safe autonomy, secure autonomy, coordinated autonomy, efficient autonomy
+		MPC, SLAM, reinforcement learning, simulator
+	문제 : too many knobs to turn
+
+AV testing의 문제
+	시나리오의 무한 순열
+		manually 구성되는 테스트 시나리오는 포괄적이지 않다.
+		대표격인 테스트 시나리오를 자동으로 생성하는 것은 어렵다.
+	advanced 시나리오
+		traffic can be erratic. AV 차체는 매일 고유한 시나리오를 마주하게 된다.
+		프로토타입을 이용해 이러한 시나리오를 테스트하더라도 비실용적이다.
+		이미 on-road 경험으로 학습된 프로토타입에게 이러한 임의의 시나리오를 던져주는 것은 위험하고, costly하다
+
+
+
+# F1tenth gym api reference
+
+base classes : 물리시뮬레이션과 차체 사이의 상호작용 다룸.
+	RaceCar : 단일차량의 물리와 레이저스캔 다룸
+		params (dict): vehicle parameters dictionary
+			={'mu', 'C_Sf', 'C_Sr', 'lf', 'lr', 'h', 'm', 'I', 's_min', 's_max', 'sv_min', 'sv_max', 'v_switch', 'a_max': 9.51, 'v_min', 'v_max', 'length', 'width'}
+			mu : 마찰계수
+			C_Sf : 전륜 코너링 강성 (측면력에 대한 강성 계수)
+			C_Sr
+			lf : 전륜에서 무게 중심까지 거리
+			lr
+			h : 무게 중심 높이 - roll 센터 계산에 사용
+			length : 차량 전체 넓이
+			width : 차량 전체 너비
+			m : 차량 질량
+			I : yaw 관성 모먼트 - 수직축 주위의 회전 관성
+			v_min
+			v_max
+			a_max
+			v_switch : 속도 전환점 - 다른 제어 모드로 전환되는 속도
+			s_min : 최소 조향 각도 (스티어링 각도 하한)
+			s_max
+			sv_min : 최소 조향 속도
+			xv_max
+			# 이것은 single track bicycle 운동학 model에 대한 파라미터들.
+			
+			# Double Track 운동역학 Model에 필요한 추가 파라미터 예시
+			additional_params = {
+			    # 서스펜션
+			    'k_spring_f', 'k_spring_r',  # 스프링 강성
+			    'c_damper_f', 'c_damper_r',  # 댐퍼 계수
+			    'roll_center_height_f', 'roll_center_height_r',
+    
+			    # 에어로다이나믹
+			    'cl_aero',  # 양력 계수
+			    'cd_aero',  # 항력 계수
+			    'aero_balance',  # 공기역학적 밸런스
+    
+			    # 구동계
+			    'power_curve',  # 파워 커브
+			    'torque_curve', # 토크 커브
+			    'final_drive_ratio',
+    
+			    # 브레이크
+			    'max_brake_pressure',
+			    'brake_bias',
+    
+			    # 타이어 추가 파라미터
+			    'C_Lf', 'C_Lr',  # 롤링 저항 계수
+			    'relaxation_length'  # 타이어 릴렉세이션 길이
+			}
+			
+			
+	    is_ego (bool): ego identifier
+	    time_step (float): physics timestep
+	    	=0.01
+	    num_beams (int): number of beams in laser
+	    	=1080
+	    fov (float): field of view of laser
+	    	=4.7
+	    state (np.ndarray (7, )): state vector [x, y, theta, vel, steer_angle, ang_vel, slip_angle]
+    	odom (np.ndarray(13, )): odometry vector [x, y, z, qx, qy, qz, qw, linear_x, linear_y, linear_z, angular_x, angular_y, angular_z]
+	    accel (float): current acceleration input
+    	steer_angle_vel (float): current steering velocity input
+	    in_collision (bool): collision indicator
+	    
+	    set_map(self, map_path, map_ext) : 시뮬레이터 스캐너가 인식할 맵 제공
+	    ray_cast_agents(self, scan)
+	    check_ttc(self)
+	    
+	    reset(self, pose)
+	    update_pose(self, raw_steer, vel)
+	    update_opp_poses(self, opp_poses)
+	    update_scan(self)
+	    
+	Simulator : 환경 속 모든 차량들의 상호작용과 업데이트 다룸
+		num_agents (int): number of agents in the environment
+	    time_step (float): physics time step
+	    agent_poses (np.ndarray(num_agents, 3)): all poses of all agents
+	    agents (list[RaceCar]): container for RaceCar objects
+	    collisions (np.ndarray(num_agents, )): array of collision indicator for each agent
+	    collision_idx (np.ndarray(num_agents, )): which agent is each agent in collision with
+	    
+dynamic models
+	numba jit compiled function for dynamic models
+	(대충 numba + llvm + numpy로 파이썬으로 작성했음에도 개빠른 기계어로 바꾼 함수들 모아놓은 모듈)
+	accl_constraints : 가속도를 허용되는 값으로 조정
+	steering_constraint : 조향을 허용되는 값으로 조정
+	vehicle_dynamics_ks : Single Track Kinematic Vehicle Dynamics.
+		x (numpy.ndarray (3, )): vehicle state vector
+		u (numpy.ndarray (2, )): control input vector
+		return : 미분방정식의 우변
+		(운동학)
+	vehicle_dynamics_st : Single Track Dynamic Vehicle Dynamics.
+		return : 미분방정식의 우변
+		(운동역학)
+	pid
+	func_KS
+	func_ST
+	
+laser scan simulator models
+	이또한 numba 이용한 기계어 함수 포함.
+	레이저 스캔 시뮬레이터의 핵심 : 주어진 맵 이미지의 euclidean distance transform
+	https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.distance_transform_edt.html#scipy.ndimage.distance_transform_edt
+	
+	get_dt(bitmap (n,m), resolution(m/cell) )
+		bitmap (카테시안 좌표계?에 대해 장애물 있음/없음)
+		return : 동일 카테시안 좌표계 행렬에 대해, bool -> distance 정보로
+	xy_2_rc : 좌표 (x, y)를 행렬 상 인덱스 (r, c)로 변환
+		args: x, y와 함께, orig_x, orig_y, 높이, 너비, 레솔루션
+	distance_transform : 해당하는 위치의 거리 출력 or 레이캐스팅?
+	trace_ray : 특정 각도에 대해, 첫 장애물 나타나는 거리 (광선 쏘기)
+		theta_index - 애초에 scan beam range도 고정이라, 인덱스 방식으로 작동?
+		args로 pre-calculated sines/cosines of the angle array 제공
+	get_scan : 주어진 pose(위치, 방향)에서의 스캔.
+		fov, num_beams로 이산화된 각에 대해 레이캐스팅 진행.
+		스캔 결과 : (n,). 각 빔에서 얻어진 trace_ray? 광선 거리
+	check_ttc_jit
+		TTC : time to collision = 거리 / 상대속도?
+		iTTC : inverse TTC
+		개별 빔에 대한 iTTC 계산한다.
+	cross : 외적
+	are_collinear : 세 개의 점이 한 직선 위에 있습니까?
+	get_range : 센서위치(pose)와 장애물 직사각형(좌표 a,b,c,d), 그리고 beam_theta에 대해 광선을 발사해서 교차하는 최소거리를 계산.
+	ray_cast : 상대 차량의 4 정점에 대하여 scan을 수정
+		여기서는 직사각형 고정이 아니라, 4정점 선택해 자유로운 사각형 형성 가능
+		args로 scan 포함 입력
+		result : new_scan
+	main
+	ScanSimulator2D
+		num_beams (int): number of beams in the scan
+	    fov (float): field of view of the laser scan
+    	std_dev (float, default=0.01): standard deviation of the generated whitenoise in the scan
+	    eps (float, default=0.0001): ray tracing iteration termination condition
+    	theta_dis (int, default=2000): number of steps to discretize the angles between 0 and 2pi for look up
+    	max_range (float, default=30.0): maximum range of the laser
+	    seed (int, default=123): seed for random number generator for the whitenoise in scan
+
+collision models
+	에이전트 간 충돌 체크
+	GJK 알고리즘 (gilbert-johnson-keerthi)
+	https://cse442-17f.github.io/Gilbert-Johnson-Keerthi-Distance-Algorithm/
+		상호작용 되는 이쁜 도형들 있으니 츄라이 (any convex polygon)
+	perpendicular(pt)
+	tripleProduct(a, b, c)
+	# GJK 위해, 폴리곤 도형에 대한 보조함수들인듯
+	avgPoint(vertices)
+	indexOfFurthestPoint(vertices, d)
+	support(vertices1, vertices2, d)
+		Minkowski sum support function for GJK
+	collision(vertices1, vertices2) : GJK 테스트
+	collision_multiple(vertices)
+		vertices : (num_bodies, 4, 2)
+		주어진 num_bodies만큼의 사각형 도형들에 대해 충돌 테스트
+	get_trmtx(pose) : Get transformation matrix of vehicle frame -> global frame
+	get_vertices(pose, length, width)
+	
+gym environment : This is the top level file that conforms to the OpenAI gym convention.
+	https://github.com/openai/gym
+	강화학습하기 좋은 환경 컨벤션이 있나 봅니다.
+	
+	module f110_env
+	VIDEO_W = 600
+	VIDEO_H = 400
+	WINDOW_W = 1000
+	WINDOW_H = 800
+		seed (int): seed for random state and reproducibility    
+        map (str, default='vegas'): name of the map used for the environment. Currently, available environments include: 'berlin', 'vegas', 'skirk'. You could use a string of the absolute path to the yaml file of your custom map.
+        map_ext (str, default='png'): image extension of the map image file. For example 'png', 'pgm'
+        params (dict, default={'mu': 1.0489, 'C_Sf':, 'C_Sr':, 'lf': 0.15875, 'lr': 0.17145, 'h': 0.074, 'm': 3.74, 'I': 0.04712, 's_min': -0.4189, 's_max': 0.4189, 'sv_min': -3.2, 'sv_max': 3.2, 'v_switch':7.319, 'a_max': 9.51, 'v_min':-5.0, 'v_max': 20.0, 'width': 0.31, 'length': 0.58}): dictionary of vehicle parameters.
+        mu: surface friction coefficient
+        C_Sf: Cornering stiffness coefficient, front
+        C_Sr: Cornering stiffness coefficient, rear
+        lf: Distance from center of gravity to front axle
+        lr: Distance from center of gravity to rear axle
+        h: Height of center of gravity
+        m: Total mass of the vehicle
+        I: Moment of inertial of the entire vehicle about the z axis
+        s_min: Minimum steering angle constraint
+        s_max: Maximum steering angle constraint
+        sv_min: Minimum steering velocity constraint
+        sv_max: Maximum steering velocity constraint
+        v_switch: Switching velocity (velocity at which the acceleration is no longer able to create wheel spin)
+        a_max: Maximum longitudinal acceleration
+        v_min: Minimum longitudinal velocity
+        v_max: Maximum longitudinal velocity
+        width: width of the vehicle in meters
+        length: length of the vehicle in meters
+        
+        num_agents (int, default=2): number of agents in the environment
+        timestep (float, default=0.01): physics timestep
+        ego_idx (int, default=0): ego's index in list of agents
+	
+	F110Env
+		step(self, action)
+			Returns:
+				obs (dict): observation of the current step
+				reward (float, default=self.timestep): step reward, currently is physics timestep
+				done (bool): if the simulation is done
+				info (dict): auxillary information dictionary
+		reset(self, poses)
+		update_map(self, map_path, map_ext)
+		update_params(self, params, index=-1)
+		render(self, mode='human')
+			mode=human : 현실적이게, 천천히 (시뮬타임 elapsed과 현실것과 비슷하도록)
+			mode=human_fast
+		
+what's in an obervation
+	gym 환경 reset/step 이후 반환되는 observation에 대해 알아보자.
+	다음과 같은 키를 포함한 딕셔너리임:
+		이게 전부 복수형인 이유는, 모든 에이전트에 대해 구해주기 때문인듯
+	ego_idx : (num_agents, )
+	scans : (num_agents, num_beams)
+	poses_x
+	poses_y
+	poses_theta
+	linear_vels_x
+	linear_vels_y
+	ang_vels_z : yaw rate
+	collisions : booleans(충돌 yes or no)
+
+rendering engine : This is the rendering engine using pyglet to visualize the running environment.
+	ZOOM_IN_FACTOR = 1.2
+	ZOOM_OUT_FACTOR = 1/ZOOM_IN_FACTOR
+	CAR_LENGTH = 0.58
+	CAR_WIDTH = 0.31
+	
+	EnvRenderer : public Window
+		A window class inherited from pyglet.window.Window, handles the camera/projection interaction, resizing window, and rendering the environment
+		update_map (시뮬레이터 환경 위해 추가한 메소드)
+		update_obs
+		기존 것들(Window 클래스의)일 것으로 보이는 얘들:
+		on_resize
+		on_mouse_drag
+		on_mouse_scroll
+		on_close
+		on_draw
+
+시도해볼 만한 커스터마이제이션 옵션들
+	맵 바꾸기 (yaml형식(x, y, left, right)?이거나, 이미지형식)
+	random track generator (beta)
+	multiple agents
+		스텝을 동결시키고, 에이전트나 장애물을 추가하는 것도 가능할 듯?
+		근데 실제 차량 주행 때는 라이더밖에 못 쓰는거 아닌가?
+		이 시뮬레이터 환경은 모든 차량이 서로의 운동 상태를 완전히 측정하는 능력을 부여한 건 아닌가?
+	vehicle dyanmics 매개변수 바꾸기
+		{mu, C_Sf, C_Sr, ... 그거}
+	
+	commonRoad : vehicle models. 실제 물리상수 (샘플 3개씩?) 들어있음
+		https://gitlab.lrz.de/tum-cps/commonroad-vehicle-models/-/blob/master/vehicleModels_commonRoad.pdf?ref_type=heads
+			python, matlab 스크립트로 상수 구하는건가?
+		(기본적으로) Steering and Acceleration Constraints
+		각 모델에 대해, State Space Model과 Parameters가 주어진다
+		Point-Mass Model (PM)
+		Kinematic Single-Track Model (KS)
+		Kinematic Single-Track Model with One On-axle Trailer (KST)
+			ㄴ 트레일러가 달린 차량의 운동을 연구하는 것으로 보임
+		Single-Track Model (ST)
+		Single-Track Drift Model (STD)
+		
+		Multi-Body Model (MB)
+			state variables
+			auxiliary variables
+			tire formulas
+		
+f1tenth gym
+why 싱글트랙 운동학 모델?
+    1:10 스케일 RC 카에서는:
+        서스펜션 효과 상대적으로 작음
+        롤 모멘트 무시 가능
+        타이어 비선형성 덜 critical
+        
+# 실제 대회에서 중요한 요소들:
+planning_accuracy > vehicle_dynamics_accuracy
+sensor_noise_handling > suspension_effects
+computation_efficiency > physical_accuracy
+알고리즘 개발 목적
+    경로 계획, 장애물 회피 알고리즘 개발이 주 목적
+    정확한 차량 동역학보다 제어 알고리즘 자체에 집중
+    의사결정 로직 검증이 더 중요
+    
+자전거 모델 (Single-Track)
+    2자유도: 요잉(yaw), 측면 운동(lateral)
+    4개의 상태 변수: x, y, yaw, velocity
+    실시간 계산 가능: 1000Hz 이상도 충분히 가능
+더블트랙 모델 (Double-Track)
+    최소 6-8자유도: 롤(roll), 피치(pitch), 4개 타이어 개별 동역학
+    10개 이상 상태 변수
+    계산 부하 5-10배 증가
+    
+더블트랙 모델은 minimum lap time 문제와 같이, pre-computing 가능한 대상들에 대하여 좋은 것으로 보인다.
+트랙 지형학적 특성
+차량 한계 성능 맵
+vehicle_limits = {
+    'friction_ellipse': compute_friction_ellipse(),  # 마찰 타원
+    'max_lateral_accel': a_lat_max(v),              # 속도별 최대 측면가속도
+    'max_longitudinal_accel': a_lon_max(v),         # 속도별 최대 종방향가속도
+    'engine_braking_map': power_limits(v)           # 엔진/제동 성능 맵
+}
+단점
+    계산 비용: 오프라인 최적화에 수시간~수일 소요
+    환경 변화 대응: 날씨, 노면 상태 변화에 취약
+    파라미터 민감도: 차량 상태 변화에 대한 Robustness 필요
+
+high-stakes 분야
+네, absolutely 맞습니다. 드론 조종과 수술 로봇 같은 분야에서는:
+    실패 비용이 극히 높아 모델 정확도가 생사나 직결됨
+    물리적 한계에서 작동하여 마진이 거의 없음
+    환경과의 상호작용이 복잡하여 단순화가 위험함

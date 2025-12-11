@@ -1,0 +1,322 @@
+$schema: http://json-schema.org/draft-07/schema#
+$id: https://example.com/universe.schema.json
+title: Universe
+
+type: object
+properties:
+  universe:
+    type: array
+    items:
+      oneOf:
+        - $ref: "#/definitions/module"
+        - $ref: "#/definitions/pkg"
+        - $ref: "#/definitions/repo"
+
+definitions:  
+  module:
+    type: object
+    properties:
+      module:
+        type: string
+      children:
+        type: array
+        items:
+          oneOf:
+            - $ref: "#/definitions/module"
+            - $ref: "#/definitions/pkg"
+            - $ref: "#/definitions/repo"
+        default: []
+    required:
+      - module
+
+  pkg:
+    type: object
+    properties:
+      pkg:
+        type: string
+      type:
+        type: string
+        enum:
+          - interface
+          - node
+          - algorithm
+          - launch
+      lang:
+        type: string
+        enum:
+          - cpp
+          - rust
+      source_codes:
+        type: array
+        items:
+          type: string
+        default: []
+      dependencies:
+        type: array
+        items:
+          type: string
+        default: []
+      build_depends:
+        type: array
+        items:
+          type: string
+        default: []
+      exec_depends:
+        type: array
+        items:
+          type: string
+        default: []
+      test_depends:
+        type: array
+        items:
+          type: string
+        default: []
+      description:
+        type: string
+      msgs:
+        type: array
+        items:
+          $ref: "#/definitions/msg"
+        default: []
+      srvs:
+        type: array
+        items:
+          $ref: "#/definitions/srv"
+        default: []
+      actions:
+        type: array
+        items:
+          $ref: "#/definitions/action"
+        default: []
+      purpose:
+        type: string
+      design:
+        type: string
+      inputs:
+        type: array
+        items:
+          $ref: "#/definitions/interface"
+        default: []
+      outputs:
+        type: array
+        items:
+          $ref: "#/definitions/interface"
+        default: []
+      parameters:
+        type: array
+        items:
+          $ref: "#/definitions/param"
+        default: []
+      references:
+        type: array
+        items:
+          type: string
+        default: []
+      cmake_version:
+        type: string
+      install_to_share:
+        type: array
+        items:
+          type: string
+        default: []
+      rust_edition:
+        type: string
+      version:
+        type: string
+      maintainers:
+        type: array
+        items:
+          $ref: "#/definitions/person"
+        default: []
+      authors:
+        type: array
+        items:
+          $ref: "#/definitions/person"
+        default: []
+      license:
+        type: string
+    required:
+      - pkg
+
+  repo:
+    type: object
+    properties:
+      repo:
+        type: string
+      url:
+        type: string
+      version:
+        type: string
+      subpaths:
+        type: array
+        items:
+          type: string
+        default: []
+    required:
+      - repo
+
+  person:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+    required:
+      - name
+      - email
+  
+  param:
+    type: object
+    properties:
+      param:
+        type: string
+      type:
+        type: string
+      unit:
+        type: string
+      description:
+        type: string
+      default:
+        oneOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: integer
+    required:
+      - param
+
+  interface:
+    type: object
+    properties:
+      msg:
+        type: string
+      srv:
+        type: string
+      action:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+      interface_type:
+        type: string
+        enum:
+          - msg
+          - srv
+          - action
+      io_type:
+        type: string
+        enum:
+          - input
+          - output
+      namespace:
+        type: string
+      remapping:
+        type: string
+      description:
+        type: string
+      dependency:
+        type: string
+    required:
+      - type
+
+  msg:
+    type: object
+    properties:
+      msg:
+        type: string
+      fields:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      description:
+        type: string
+      dependencies:
+        type: string
+      references:
+        type: array
+        items:
+          type: string
+        default: []
+    required:
+      - msg
+  srv:
+    type: object
+    properties:
+      srv:
+        type: string
+      requests:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      responses:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      description:
+        type: string
+      dependencies:
+        type: array
+        items:
+          type: string
+        default: []
+      references:
+        type: array
+        items:
+          type: string
+        default: []
+    required:
+      - srv
+
+  action:
+    type: object
+    properties:
+      action:
+        type: string
+      goal_requests:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      responses:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      feedbacks:
+        type: array
+        items:
+          $ref: "#/definitions/field"
+        default: []
+      description:
+        type: string
+      dependencies:
+        type: array
+        items:
+          type: string
+        default: []
+      references:
+        type: array
+        items:
+          type: string
+        default: []
+    required:
+      - action
+
+  field:
+    type: object
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      description:
+        type: string
+      dependency:
+        type: string
+    required:
+      - name

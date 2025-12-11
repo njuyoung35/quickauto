@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>{{ pkg.pkg }}</name>
+  <version>{{ pkg.version }}</version>
+  <description>
+    {{ pkg.description | trim }}
+  </description>
+  {% for maintainer in pkg.maintainers -%}
+  <maintainer email="{{ maintainer.email }}">{{ maintainer.name }}</maintainer>
+  {% endfor %}
+  <license>{{ pkg.license }}</license>
+  {% for author in pkg.authors -%}
+  <author email="{{ author.email }}">{{ author.name }}</author>
+  {% endfor %}
+  
+  {% for depend in pkg.dependencies | default([]) -%}
+  <depend>{{ depend }}</depend>
+  {% endfor %}
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  {% if pkg.type.name == "interface" -%}
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+
+  <exec_depend>rosidl_default_runtime</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+  {%- elif pkg.lang.name == "cpp" -%}
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+  {%- elif pkg.lang.name == "rust" -%}
+  <buildtool_depend>ament_cargo</buildtool_depend>
+  <depend>rclrs</depend>
+  <export>
+    <build_type>ament_cargo</build_type>
+  </export>
+  {%- endif %}
+</package>

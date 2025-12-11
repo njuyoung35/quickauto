@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- reference: https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/launch/autoware.launch.xml -->
+
+  <arg name="launch_control" default="true" description="launch control"/>
+  <arg name="launch_planning" default="false" description="launch planning"/>
+  <arg name="launch_global" default="false" description="launch global"/>
+  <arg name="launch_simulator" default="false" description="launch simulator"/>
+  <arg name="launch_rviz2" default="true" description="launch rviz2"/>
+
+  <!-- Control -->
+  <group if="$(var launch_control)">
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_control_component.launch.xml">
+    </include>
+  </group>
+
+  <!-- Planning -->
+  <group if="$(var launch_planning)">
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_planning_component.launch.xml">
+    </include>
+  </group>
+
+  <!-- Global -->
+  <group if="$(var launch_global)">
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_global_component.launch.xml">
+    </include>
+  </group>
+
+  <!-- Simulator -->
+  <group if="$(var launch_simulator)">
+    <include file="$(find-pkg-share ssu2_launch)/launch/components/ssu2_simulator_component.launch.xml">
+    </include>
+  </group>
+
+  <!-- rviz args -->
+  <arg name="rviz" default="true" description="launch rviz"/>
+  <arg name="rviz_config_name" default="ssu2.rviz" description="rviz config name"/>
+  <arg name="rviz_config" default="$(find-pkg-share ssu2_launch)/rviz/$(var rviz_config_name)" description="rviz config path"/>
+  <arg name="rviz_respawn" default="true"/>
+
+  <!-- rviz -->
+  <group if="$(var launch_rviz2)">
+    <node
+      pkg="rviz2"
+      exec="rviz2"
+      name="rviz2"
+      output="screen"
+      args="-d $(var rviz_config) -s $(find-pkg-share ssu2_launch)/rviz/image/suu_emblem1.png"
+      if="$(var rviz)"
+      respawn="$(var rviz_respawn)"
+    >
+      <env name="QT_QPA_PLATFORMTHEME" value="qt5ct"/>
+    </node>
+  </group>
+</launch>

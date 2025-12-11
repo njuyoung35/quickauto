@@ -1,0 +1,7 @@
+paths:
+  - source: launcher/autoware_launch/autoware_launch
+    target: autoware_launch/autoware_launch
+  - source: universe/autoware_universe/launch
+    target: autoware_universe/launch
+  - source: universe/autoware_universe/simulator/autoware_simple_planning_simulator
+    target: autoware_universe/simulator/autoware_simple_planning_simulator

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ssu2_simulator</name>
+  <version>0.0.0</version>
+  <description>
+    시뮬레이터 패키지입니다.
+플래닝에게서 궤적 입력 받아서
+컨트롤, 측위, 인지를 모놀리식으로 실행.
+  </description>
+  <maintainer email="njuyoung35@gmail.com">njuyoung35</maintainer>
+  <maintainer email="leejaeya@gmail.com">LeeJaeya-1</maintainer>
+  <maintainer email="leehwanhi@gmail.com">LeeHwanhi</maintainer>
+  
+  <author email="njuyoung35@gmail.com">njuyoung35</author>
+  <author email="leejaeya@gmail.com">LeeJaeya-1</author>
+  <author email="leehwanhi@gmail.com">LeeHwanhi</author>
+  
+  <license>MIT</license>
+  
+  <depend>ssu2_planning_msgs</depend>
+  
+  <!-- PRESERVED_JINJA2_CODEGEN_START -->
+
+  <!-- PRESERVED_JINJA2_CODEGEN_END -->
+
+  <buildtool_depend>ament_cargo</buildtool_depend>
+  <depend>rclrs</depend>
+  <export>
+    <build_type>ament_cargo</build_type>
+  </export>
+</package>

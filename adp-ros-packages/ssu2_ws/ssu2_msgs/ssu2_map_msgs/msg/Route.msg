@@ -1,0 +1,4 @@
+
+ssu2_map_msgs/GPSCoordinates departure
+ssu2_map_msgs/GPSCoordinates[] waypoints
+ssu2_map_msgs/GPSCoordinates destination

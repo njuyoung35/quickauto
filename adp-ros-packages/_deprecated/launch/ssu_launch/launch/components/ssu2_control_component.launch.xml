@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find-pkg-share ssu2_launch)/config/control/default_preset.yaml"/>
+
+  <arg name="lateral_controller_mode" default="mpc"/>
+  <arg name="longitudinal_controller_mode" default="pid"/>
+  <!-- <arg name="use_individual_control_param" default="false"/>
+  <arg name="use_aeb_autoware_state_check" default="true"/> -->
+  <arg name="use_sim_time" default="false"/>
+  <arg name="vehicle_model" default="sample_vehicle"/>
+
+  <!-- trajectory_follower_node -->
+  <group>
+    <load_composable_node target="/control/control_container">
+      <composable_node pkg="ss2u_trajectory_follower_node" name="trajectory_follower_node" exec="trajectory_follower">
+        <remap from="~/input/reference_trajectory" to="/planning/trajectory"/>
+        <remap from="~/input/current_odometry" to="/localization/kinematic_state"/>
+      </composable_node>
+    </load_composable_node>
+  </group>
+</launch>

@@ -1,0 +1,73 @@
+universe:
+  - pkg: ssu2_map_msgs
+    type: interface
+    msgs:
+      - msg: GPSCoordinates
+        fields:
+          - name: latitude
+            type: float64
+          - name: longitude
+            type: float64
+      - msg: Route
+        fields:
+          - name: departure
+            type: ssu2_map_msgs/GPSCoordinates
+          - name: waypoints
+            type: ssu2_map_msgs/GPSCoordinates[]
+          - name: destination
+            type: ssu2_map_msgs/GPSCoordinates
+    srvs:
+      - srv: FindShortestRoute
+        requests:
+          - name: gps_coordinates
+            type: ssu2_map_msgs/GPSCoordinates
+        responses:
+          - name: estimated_total_distance
+            type: float64
+          - name: estimated_total_time
+            type: float64
+          - name: message
+            type: std_msgs/String
+        description: |
+          주어진 gps_coordinates 지점에서 거리와 시간을 예측합니다.
+
+  - pkg: ssu2_global_planner_interfaces
+    type: interface
+    msgs:
+      - msg: GlobalLaneletInfo
+        fields:
+          - name: header
+            type: std_msgs/Header
+          - name: node_ids
+            type: int64[]
+          - name: latitudes
+            type: float64[]
+          - name: longitudes
+            type: float64[]
+          - name: lanelet_ids
+            type: int64[]
+            description: |
+              노드가 속한 lanelet id (모르면 -1)
+    srvs:
+      - srv: ChangeStart
+        requests:
+          - name: latitude
+            type: float64
+          - name: longitude
+            type: float64
+        responses:
+          - name: success
+            type: bool
+            description: |
+              변경 성공 여부
+      - srv: ChangeEnd
+        requests:
+          - name: latitude
+            type: float64
+          - name: longitude
+            type: float64
+        responses:
+          - name: success
+            type: bool
+            description: |
+              변경 성공 여부

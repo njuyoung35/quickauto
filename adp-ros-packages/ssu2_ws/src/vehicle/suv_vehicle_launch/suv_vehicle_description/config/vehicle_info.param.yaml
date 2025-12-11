@@ -1,0 +1,14 @@
+ros__parameters:
+  vehicle_name: suv
+  wheel_base: 2.9
+  wheel_tread: 1.7
+  wheel_radius: 0.4
+  wheel_width: 0.26
+  front_overhang: 0.95
+  rear_overhang: 1.1
+  left_overhang: 0.18
+  right_overhang: 0.18
+  ground_offset: 0.25
+  vehicle_height: 1.75
+  vehicle_width: 2.06
+  vehicle_length: 4.949999999999999

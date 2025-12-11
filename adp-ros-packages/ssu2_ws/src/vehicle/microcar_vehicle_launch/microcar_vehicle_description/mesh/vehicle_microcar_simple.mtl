@@ -1,0 +1,9 @@
+# Material definitions
+
+newmtl Body
+Kd 0.950 0.600 0.800
+Ka 0.2 0.2 0.2
+
+newmtl Windows
+Kd 0.070 0.070 0.100
+Ka 0.1 0.1 0.1

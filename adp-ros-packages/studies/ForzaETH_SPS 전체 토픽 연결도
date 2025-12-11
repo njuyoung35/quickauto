@@ -1,0 +1,79 @@
+경로 Global Planner → Local Planner → Adapter Node → SPS
+차량상태 SPS → carstate_node → Local Planner
+
+연결 토픽 테이블!!
+| Node                                         | 패키지                       | 입력                                                      | 출력                             | 역할                                 |
+| -------------------------------------------- | --------------------------- | --------------------------------------------------------- | -------------------------------- | -----------------------             |
+| **Global Planner**                           | `global_planner`            | Lanelet2 또는 CSV 레이스라인                               | **`/global_waypoints`**          | 전체 전역 경로 생성 (Race Line)       |
+| **carstate_node**                            | `state_estimation`          | **`/output/odometry`** ← SPS 차량상태<br> `/global_waypoints` | **`/car_state/frenet/odom`**  | Frenet 변환 (s,d, vs, vd)           |
+| **Local Planner (spliner)**                  | `spline_planner`            | `/global_waypoints`<br>`/car_state/frenet/odom`           | **`/planner/avoidance/otwpnts`** | 회피 스플라인 기반 국소 경로 생성     |
+| **Controller (misys)**                       | `controller`                | `/planner/avoidance/otwpnts`<br>`/car_state/frenet/odom`  | **`/control/command`**           |                                     |
+| (remap → `/input/ackermann_control_command`) | Pure Pursuit 기반 조향·속도 생성    |                                                    |                                  |                                     |
+| **SPS**                                      | `simple_planning_simulator` | `/input/ackermann_control_command`                        | **`/output/odometry`**, `/tf`    | 차량 모델 업데이트 (시뮬 차량 pose)   |
+
+
+
+
+───────────────────────────────────────────────────────────────
+                    [GLOBAL PLANNER]
+───────────────────────────────────────────────────────────────
+package: global_planner
+exe: global_planner_node
+outputs:
+    /global_waypoints  ───────────────┐
+──────────────────────────────────────┘
+                                     │
+                                     ▼
+───────────────────────────────────────────────────────────────
+                    [LOCAL PLANNER - SPLINER]
+───────────────────────────────────────────────────────────────
+package: spline_planner
+exe: spline_planner
+inputs:
+    /global_waypoints
+    /car_state/frenet/odom
+output:
+    /planner/avoidance/otwpnts  ────────────────┐
+────────────────────────────────────────────────┘
+                                              │
+                                              ▼
+───────────────────────────────────────────────────────────────
+                       [CONTROLLER - misys]
+───────────────────────────────────────────────────────────────
+package: controller
+exe: controller_manager
+inputs:
+    /planner/avoidance/otwpnts
+    /car_state/frenet/odom
+output:
+    /control/command  ────────────────────────┐
+(remapped to /input/ackermann_control_command)│
+──────────────────────────────────────────────┘
+                                             │
+                                             ▼
+───────────────────────────────────────────────────────────────
+          [SPS - AUTOWARE SIMPLE PLANNING SIMULATOR]
+───────────────────────────────────────────────────────────────
+package: simple_planning_simulator
+exe: simple_planning_simulator_exe
+inputs:
+    /input/ackermann_control_command   ← controller
+outputs:
+    /output/odometry  ────────────────┐
+    /tf                                │
+───────────────────────────────────────┘
+                                      │
+                                      ▼
+───────────────────────────────────────────────────────────────
+            [state_estimation - carstate_node]
+───────────────────────────────────────────────────────────────
+package: state_estimation
+exe: carstate_node
+params:
+    /carstate_node/odom_topic = "/output/odometry"
+inputs:
+    /output/odometry   ← SPS
+    /global_waypoints  ← global planner
+outputs:
+    /car_state/frenet/odom  ────────────────→ Local Planner
+───────────────────────────────────────────────────────────────

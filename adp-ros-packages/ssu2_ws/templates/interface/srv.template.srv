@@ -1,0 +1,17 @@
+{% if srv.description %}
+{{ srv.description | comment_hash }}
+{% endif %}
+
+{% for request in srv.requests %}
+{% if request.description %}
+{{ request.description | comment_hash }}
+{% endif %}
+{{ request.type }} {{ request.name }}
+{% endfor %}
+---
+{% for response in srv.responses %}
+{% if response.description %}
+{{ response.description | comment_hash }}
+{% endif %}
+{{ response.type }} {{ response.name }}
+{% endfor %}

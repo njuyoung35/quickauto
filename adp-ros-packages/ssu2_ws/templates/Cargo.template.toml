@@ -1,0 +1,17 @@
+[package]
+name = "{{ pkg.pkg }}"
+version = "{{ pkg.version }}"
+edition = "{{ pkg.rust_edition }}"
+
+[dependencies]
+rclrs = "0.6"
+rosidl_runtime_rs = "0.5"
+{% if pkg.dependencies is not none -%}
+{% for depend in pkg.dependencies %}
+{{ depend }} = "*"
+{%- endfor %}
+{%- endif %}
+
+# PRESERVED_JINJA2_CODEGEN_START
+
+# PRESERVED_JINJA2_CODEGEN_END
